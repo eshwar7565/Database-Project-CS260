@@ -29,11 +29,7 @@ h2 {font-family: Georgia,Verdana, Arial, Helvetica, sans-serif, "MS sans serif";
  </td> </tr>
 </table>
 </td></tr>
-<tr height = "50%"><td>
-<table  width="100%" align="center" cellspacing="0" cellpadding="0"  border="0">
-	<tr> <td align="center"> <img src="pics/iitpatna_admin.jpg" > </td> </tr>
-</table>
-</td></tr>
+
 <tr height = "30%"><td>
 <table  align = "center" border=0 cellspacing=0 cellpadding=4>
 <tr><td width=30>&nbsp;</td>

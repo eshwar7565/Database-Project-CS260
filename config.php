@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database="dblab8";
+$database="project";
 
 
 $conn = mysqli_connect($servername, $username, $password,$database);

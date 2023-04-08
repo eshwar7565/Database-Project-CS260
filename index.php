@@ -40,10 +40,10 @@ h2 {font-family: Georgia,Verdana, Arial, Helvetica, sans-serif, "MS sans serif";
 <td bgcolor=skyblue� align=center width=100><a href="student/login.php" alt ="Id" title = "For Student">Student </a></td>
 <td width=30>&nbsp;</td>
 <td width=30>&nbsp;</td>
-<td bgcolor=red align=center width=100 ><a href="/student/login_admin1.asp" alt ="Id" title = "For Administration">Alumni</a></td>
+<td bgcolor=red align=center width=100 ><a href="alumni/login.php" alt ="Id" title = "For Administration">Alumni</a></td>
 <td width=30>&nbsp;</td>
 <td width=30>&nbsp;</td>
-<td bgcolor=indigo align=center width=100 ><a href="/student/fac_login_new.asp" alt ="Id" title = "For Faculty">Company</a></td>
+<td bgcolor=indigo align=center width=100 ><a href="company/login.php" alt ="Id" title = "For Faculty">Company</a></td>
 <td width=30>&nbsp;</td>
 
 <td width=30>&nbsp;</td>

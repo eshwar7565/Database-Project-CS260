@@ -15,8 +15,7 @@ h2 {font-family: Georgia,Verdana, Arial, Helvetica, sans-serif, "MS sans serif";
 
 </STYLE>
 
-<script type='text/javascript' src='script/var.js'></script>
-<script type='text/javascript' src='script/status.js'></script>
+
 
 </HEAD>
 <BODY>

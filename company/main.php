@@ -52,7 +52,7 @@ table th, table td {
   padding: 8px;
 }
 div {
-  position: ;
+  
  
   left: 30%;
 }

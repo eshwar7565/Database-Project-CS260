@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2023 at 10:58 AM
+-- Generation Time: Apr 09, 2023 at 05:01 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -64,6 +64,34 @@ CREATE TABLE `companyregister` (
 INSERT INTO `companyregister` (`compname`, `year`, `email`, `pass`) VALUES
 ('TCS', 2019, 'xyz@gmail.com', '123');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sd`
+--
+
+CREATE TABLE `sd` (
+  `rollno` char(8) NOT NULL,
+  `webmail` varchar(50) DEFAULT NULL,
+  `pass` varchar(15) DEFAULT NULL,
+  `c10` float DEFAULT NULL,
+  `c12` float DEFAULT NULL,
+  `cpi` double DEFAULT NULL,
+  `resume` mediumblob DEFAULT NULL,
+  `special` varchar(50) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `aoi` varchar(50) DEFAULT NULL,
+  `branch` varchar(20) DEFAULT NULL,
+  `salary` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `sd`
+--
+
+INSERT INTO `sd` (`rollno`, `webmail`, `pass`, `c10`, `c12`, `cpi`, `resume`, `special`, `age`, `aoi`, `branch`, `salary`) VALUES
+('2101ai15', 'es@gmal', '123', 15, 15, 8, NULL, 'ai', 12, 'ml', 'cs', NULL);
+
 --
 -- Indexes for dumped tables
 --
@@ -79,6 +107,12 @@ ALTER TABLE `companydetails`
 --
 ALTER TABLE `companyregister`
   ADD PRIMARY KEY (`compname`);
+
+--
+-- Indexes for table `sd`
+--
+ALTER TABLE `sd`
+  ADD PRIMARY KEY (`rollno`);
 
 --
 -- Constraints for dumped tables

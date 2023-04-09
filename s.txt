@@ -1,0 +1,11 @@
+    if($type!=NULL){
+        $query="update from companydetails set type=$type where compname=$empid";
+        $result=mysqli_query($conn,$query);
+    }
+
+	$type = $_POST['type'];
+	$mode=$_POST['mode'];
+	$type=$_POST['type'];
+	$minqual=$_POST['minqual'];
+    $type=$_POST['type'];
+    $type=$_POST['year'];

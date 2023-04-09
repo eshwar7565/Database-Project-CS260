@@ -5,7 +5,8 @@ if (isset($_POST['submit'])) {
 	//Save all values given in respective variables 
 	
 	$name1 = $_POST['name1'];
-	$name2 = $_POST['name2'];
+	$year=$_POST['year'];
+	
 	
 	$email = $_POST['email'];
 	
@@ -17,20 +18,22 @@ if (isset($_POST['submit'])) {
 		echo "<script>alert('Passwords do not match.')</script>";
 	} else {
 		//Check if user with the same employee id already exists
-		$query = "SELECT * FROM users where email='$email' ";
+		$query = "SELECT * FROM companyregister where email='$email' ";
 		$result = mysqli_query($conn, $query);
 		if (mysqli_num_rows($result) > 0) {
 			echo "<script>alert('User already registered. Please login.')</script>";
 		} else {
 			//Insert new employee entry into database 
-			$query = "INSERT INTO users ( first_name, last_name, email,pass) 
-				VALUES ('$name1','$name2','$email','$pwd1')";
-
+			$query = "INSERT INTO companyregister ( compname,year, email,pass) 
+				VALUES ('$name1','$year','$email','$pwd1')";
+				$query2="INSERT INTO companydetails (minqualification,mincpi,compname,salary,mode,type,curryear) values (null,null,'$name1',null,null,null,null)";
+				
 			$result = mysqli_query($conn, $query);
+			$result2=mysqli_query($conn,$query2);
 			//If insertion is successful, then redirect to login page else throw error 
 			if ($result) {
 				echo "<script>alert('User registerd!')</script>";
-				header("Location: index.php");
+				header("Location: login.php");
 			} else {
 				echo "<script>alert('Something went wrong!')</script>";
 			}
@@ -73,18 +76,21 @@ if (isset($_POST['submit'])) {
 
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="name1" class="form-label">First Name</label>
-							<input type="text" class="form-control" id="name1" name="name1" placeholder="First Name" required />
+						<div class="row">
+							<div class="col-md-5 mb-4">
+								<div class="form-group">
+							
+							<label for="name1" class="form-label">User Name</label>
+							<input type="text" class="form-control" id="name1" name="name1" placeholder="User Name" required />
+							</div>
+							</div>
 						</div>
-						<div class="form-group">
-							<label for="name2" class="form-label">Last Name</label>
-							<input type="text" class="form-control" id="name2" name="name2" placeholder="Last Name" required />
-						</div>
+						
+						
 						
 							
 						<div class="row">
-							<div class="col-md-6 mb-4">
+							<div class="col-md-8 mb-4">
 								<div class="form-group">
 									<label class="form-label" for="email">Email ID</label>
 									<input type="email" class="form-control" name="email" id="email" placeholder="Email" required />
@@ -92,7 +98,17 @@ if (isset($_POST['submit'])) {
 							</div>
 							
 						</div>
+						<div class="row">
+							<div class="col-md-6 mb-4">
+								<div class="form-group">
+									<label class="form-label" for="year">Year</label>
+									<input type="year" class="form-control" name="year" id="year" placeholder="Year" required />
+								</div>
+							</div>
+							
+						</div>
 						<div class="form-group">
+							
 							<label for="pwd1" class="form-label">Password</label>
 							<input type="password" class="form-control" name="pwd1" id="pwd1" placeholder="Password" required />
 						</div>
@@ -104,7 +120,7 @@ if (isset($_POST['submit'])) {
 							<div style="align-items: center;padding-left: 3%;">
 								<button type="submit" name="submit"  class="btn btn-default">Register</button>
 								
-								      <br><br>Already a user? <a href="index.php">Login</a>
+								      <br><br>Already a user? <a href="login.php">Login</a>
 							</div>
 						</div>
 					</form>

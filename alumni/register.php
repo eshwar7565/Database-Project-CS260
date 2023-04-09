@@ -104,7 +104,7 @@ if (isset($_POST['submit'])) {
 							<div style="align-items: center;padding-left: 3%;">
 								<button type="submit" name="submit"  class="btn btn-default">Register</button>
 								
-								      <br><br>Already a user? <a href="index.php">Login</a>
+								      <br><br>Already a user? <a href="login.php">Login</a>
 							</div>
 						</div>
 					</form>

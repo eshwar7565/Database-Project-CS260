@@ -59,6 +59,7 @@
 
     }else
     {
+        
         echo "<script>alert('Already applied to this Company')</script>";
        
     }

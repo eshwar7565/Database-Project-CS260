@@ -147,13 +147,14 @@ echo "<br><br>";
 echo "No of candidates = ";
 echo $mycount;
 echo "<br><br>";
-echo "<tr><th>ID</th><th>Name</th><th>Webmail</th><th>Action</th></tr>";
+echo "<tr><th>ID</th><th>Name</th><th>Webmail</th><th>Action1</th><th>Action2</th></tr>";
 while ($row = mysqli_fetch_assoc($result)) {
   echo "<tr>";
   echo "<td>" . $row['rollno'] . "</td>";
   echo "<td>" . $row['cpi'] . "</td>";
   echo "<td>" . $row['webmail'] . "</td>";
-  echo "<td><button>Accept</button></td>";
+  echo "<td><a href='accept.php?id=" . $row["rollno"] . "'>Accept</a></td>";
+  echo "<td><a href='accept.php?id=" . $row["rollno"] . "'>Reject</a></td>";
   echo "</tr>";
 }
 echo "</table>";
@@ -175,16 +176,18 @@ echo "<br><br>";
 echo "No of candidates = ";
 echo $mycount2;
 echo "<br><br>";
-echo "<tr><th>ID</th><th>Name</th><th>Webmail</th><th>Action</th></tr>";
+echo "<tr><th>ID</th><th>Name</th><th>Webmail</th><th>Action1</th><th>Action2</th></tr>";
 while ($row = mysqli_fetch_assoc($result2)) {
   echo "<tr>";
   echo "<td>" . $row['rollno'] . "</td>";
   echo "<td>" . $row['cpi'] . "</td>";
   echo "<td>" . $row['webmail'] . "</td>";
-  echo "<td><button>Accept</button></td>";
+  echo "<td><a href='accept.php?id=" . $row["rollno"] . "'>Accept</a></td>";
+  echo "<td><a href='accept.php?id=" . $row["rollno"] . "'>Reject</a></td>";
   echo "</tr>";
 }
 echo "</table>";
+
 
 // Close database connection
 mysqli_close($conn);

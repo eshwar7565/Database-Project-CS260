@@ -48,10 +48,11 @@
 
     //Find various fields for an  and save them in variables for display purposes 
     
-    $query = "insert into reject  (rollno,compname) values('$roll','$emp_id')";
-    $result = mysqli_query($conn, $query);
+    $query = "insert into reject(rollno,compname) values('$roll','$emp_id')";
+    mysqli_query($conn, $query);
    
-    
+    $query1 = "delete from apply where rollno='$roll' and compname='$emp_id'";
+    mysqli_query($conn,$query1);
 
     
     ?>

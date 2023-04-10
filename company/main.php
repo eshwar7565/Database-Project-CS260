@@ -190,6 +190,46 @@ echo "</table>";
 
 
 // Close database connection
+
+?>
+
+<?php
+
+// Query database
+$query = mysqli_query($conn, "SELECT rollno, webmail , cpi FROM recruitment natural join sd where compname='$empid'");
+$mycount = mysqli_num_rows($query);
+// Fetch data
+$rows = array();
+while($row = mysqli_fetch_assoc($query)) {
+    $rows[] = $row;
+}
+
+echo "<br><br>";
+// Print table
+echo '<table>';
+echo "List of Recruited candidates" ;
+echo "<br><br>";
+
+echo "No of candidates = ";
+echo $mycount;
+echo "<br><br>";
+// Print header row
+echo '<tr>';
+foreach($rows[0] as $key => $value) {
+    echo '<th>' . $key . '</th>';
+}
+echo '</tr>';
+
+// Print data rows
+foreach($rows as $row) {
+    echo '<tr>';
+    foreach($row as $key => $value) {
+        echo '<td>' . $value . '</td>';
+    }
+    echo '</tr>';
+}
+echo '</table>';
 mysqli_close($conn);
 ?>
+
 

@@ -111,6 +111,7 @@ div {
 		
 		
 	</table>
+
     <br>
 
     <form method="get" action="update.php">
@@ -118,6 +119,7 @@ div {
         <button class="centered-button">Update</button>
 
 	</form>
+	
 
 
 

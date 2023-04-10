@@ -120,7 +120,7 @@ if (isset($_POST['submit'])) {
 						</div>
 						<br />
 						<button type="submit" name="submit" class="btn btn-default">Submit</button>
-						<a href="main.php"><br><br>Back to profile</a>
+						<a href="main.php"><br><br>Back to Main page</a>
 					</form>
 				</div>
 			</div>

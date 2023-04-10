@@ -2,8 +2,8 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 09, 2023 at 05:01 PM
+-- Host: localhost:3308
+-- Generation Time: Apr 10, 2023 at 09:44 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -20,6 +20,24 @@ SET time_zone = "+00:00";
 --
 -- Database: `project`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `apply`
+--
+
+CREATE TABLE `apply` (
+  `rollno` varchar(8) NOT NULL,
+  `compname` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `apply`
+--
+
+INSERT INTO `apply` (`rollno`, `compname`) VALUES
+('2101ai15', 'TCS');
 
 -- --------------------------------------------------------
 
@@ -97,6 +115,13 @@ INSERT INTO `sd` (`rollno`, `webmail`, `pass`, `c10`, `c12`, `cpi`, `resume`, `s
 --
 
 --
+-- Indexes for table `apply`
+--
+ALTER TABLE `apply`
+  ADD PRIMARY KEY (`rollno`,`compname`),
+  ADD KEY `fk_3` (`compname`);
+
+--
 -- Indexes for table `companydetails`
 --
 ALTER TABLE `companydetails`
@@ -117,6 +142,13 @@ ALTER TABLE `sd`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `apply`
+--
+ALTER TABLE `apply`
+  ADD CONSTRAINT `fk_2` FOREIGN KEY (`rollno`) REFERENCES `sd` (`rollno`),
+  ADD CONSTRAINT `fk_3` FOREIGN KEY (`compname`) REFERENCES `companyregister` (`compname`);
 
 --
 -- Constraints for table `companydetails`

@@ -8,7 +8,10 @@ require 'config.php';
       
 ?>
 <?php
-$sql = "select * from companyregister";
+$sql = "select * from companyregister where compname not in(
+    (select companydetails.compname from sd,companydetails where companydetails.salary<sd.salary and sd.rollno='$emp_id') union 
+    (select compname from recruitment natural join sd where sd.rollno='$emp_id') union
+    (select compname from reject natural join sd where sd.rollno='$emp_id'))";
 $result = mysqli_query($conn, $sql);
 
 // Display the list of companies on the web page

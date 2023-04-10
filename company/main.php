@@ -154,7 +154,7 @@ while ($row = mysqli_fetch_assoc($result)) {
   echo "<td>" . $row['cpi'] . "</td>";
   echo "<td>" . $row['webmail'] . "</td>";
   echo "<td><a href='accept.php?id=" . $row["rollno"] . "'>Accept</a></td>";
-  echo "<td><a href='accept.php?id=" . $row["rollno"] . "'>Reject</a></td>";
+  echo "<td><a href='reject.php?id=" . $row["rollno"] . "'>Reject</a></td>";
   echo "</tr>";
 }
 echo "</table>";
@@ -183,7 +183,7 @@ while ($row = mysqli_fetch_assoc($result2)) {
   echo "<td>" . $row['cpi'] . "</td>";
   echo "<td>" . $row['webmail'] . "</td>";
   echo "<td><a href='accept.php?id=" . $row["rollno"] . "'>Accept</a></td>";
-  echo "<td><a href='accept.php?id=" . $row["rollno"] . "'>Reject</a></td>";
+  echo "<td><a href='reject.php?id=" . $row["rollno"] . "'>Reject</a></td>";
   echo "</tr>";
 }
 echo "</table>";

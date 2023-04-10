@@ -147,12 +147,13 @@ echo "<br><br>";
 echo "No of candidates = ";
 echo $mycount;
 echo "<br><br>";
-echo "<tr><th>ID</th><th>Name</th><th>Webmail</th></tr>";
+echo "<tr><th>ID</th><th>Name</th><th>Webmail</th><th>Action</th></tr>";
 while ($row = mysqli_fetch_assoc($result)) {
   echo "<tr>";
   echo "<td>" . $row['rollno'] . "</td>";
   echo "<td>" . $row['cpi'] . "</td>";
   echo "<td>" . $row['webmail'] . "</td>";
+  echo "<td><button>Accept</button></td>";
   echo "</tr>";
 }
 echo "</table>";
@@ -174,12 +175,13 @@ echo "<br><br>";
 echo "No of candidates = ";
 echo $mycount2;
 echo "<br><br>";
-echo "<tr><th>ID</th><th>Name</th><th>Webmail</th></tr>";
+echo "<tr><th>ID</th><th>Name</th><th>Webmail</th><th>Action</th></tr>";
 while ($row = mysqli_fetch_assoc($result2)) {
   echo "<tr>";
   echo "<td>" . $row['rollno'] . "</td>";
   echo "<td>" . $row['cpi'] . "</td>";
   echo "<td>" . $row['webmail'] . "</td>";
+  echo "<td><button>Accept</button></td>";
   echo "</tr>";
 }
 echo "</table>";

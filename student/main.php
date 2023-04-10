@@ -30,7 +30,7 @@ require 'config.php';
 						<div class="row">
 							<div style="align-items: center;padding-left: 3%;">
 								<br><br>
-								Find Eligible Companies <a href="eligcomp.php">Click Here!!</a>
+								Apply for companies <a href="eligcomp.php">Click Here!!</a>
 							</div>
 						</div>
 					</form>

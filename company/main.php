@@ -157,6 +157,34 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 echo "</table>";
 
+
+// Select all rows from table
+$query2 = "SELECT * from sd,companydetails,apply 
+where '$empid'=companydetails.compname and '$empid'=apply.compname and apply.rollno=sd.rollno and companydetails.mincpi>sd.cpi";
+$result2 = mysqli_query($conn, $query2);
+ $mycount2 = mysqli_num_rows($result2);
+
+
+// Generate HTML table to display data
+echo "<br><br>";
+echo "<table>";
+echo "List of applied candidates who are not eligible" ;
+echo "<br><br>";
+
+echo "No of candidates = ";
+echo $mycount2;
+echo "<br><br>";
+echo "<tr><th>ID</th><th>Name</th><th>Webmail</th></tr>";
+while ($row = mysqli_fetch_assoc($result2)) {
+  echo "<tr>";
+  echo "<td>" . $row['rollno'] . "</td>";
+  echo "<td>" . $row['cpi'] . "</td>";
+  echo "<td>" . $row['webmail'] . "</td>";
+  echo "</tr>";
+}
+echo "</table>";
+
 // Close database connection
 mysqli_close($conn);
 ?>
+

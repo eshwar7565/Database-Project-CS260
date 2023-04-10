@@ -141,7 +141,7 @@ $result = mysqli_query($conn, $query);
 // Generate HTML table to display data
 echo "<br><br>";
 echo "<table>";
-echo "List of applied candidates who applied" ;
+echo "List of applied candidates who are eligible" ;
 echo "<br><br>";
 
 echo "No of candidates = ";

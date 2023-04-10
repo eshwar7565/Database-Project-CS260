@@ -119,7 +119,7 @@ div {
         <button class="centered-button">Update</button>
 
 	</form>
-	
+
 
 
 
@@ -127,3 +127,36 @@ div {
 	
 </body>
 </html>
+<?php
+
+//Find various fields for an  and save them in variables for display purposes 
+
+// Select all rows from table
+$query = "SELECT * from sd,companydetails,apply 
+where '$empid'=companydetails.compname and '$empid'=apply.compname and apply.rollno=sd.rollno and companydetails.mincpi<=sd.cpi";
+$result = mysqli_query($conn, $query);
+ $mycount = mysqli_num_rows($result);
+
+
+// Generate HTML table to display data
+echo "<br><br>";
+echo "<table>";
+echo "List of applied candidates who applied" ;
+echo "<br><br>";
+
+echo "No of candidates = ";
+echo $mycount;
+echo "<br><br>";
+echo "<tr><th>ID</th><th>Name</th><th>Webmail</th></tr>";
+while ($row = mysqli_fetch_assoc($result)) {
+  echo "<tr>";
+  echo "<td>" . $row['rollno'] . "</td>";
+  echo "<td>" . $row['cpi'] . "</td>";
+  echo "<td>" . $row['webmail'] . "</td>";
+  echo "</tr>";
+}
+echo "</table>";
+
+// Close database connection
+mysqli_close($conn);
+?>

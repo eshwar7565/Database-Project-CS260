@@ -4,8 +4,15 @@ include 'config.php';
 if (isset($_POST['submit'])) {
 	//Save all values given in respective variables 
 	
-	$name1 = $_POST['name1'];
-	$name2 = $_POST['name2'];
+	$roll = $_POST['rollno'];
+	$name = $_POST['name'];
+	$year = $_POST['year'];
+	$cpi = $_POST['cpi'];
+	$degree = $_POST['degree'];
+	$branch = $_POST['branch'];
+	$linkedin = $_POST['linkedin'];
+	
+	
 	
 	$email = $_POST['email'];
 	
@@ -17,14 +24,14 @@ if (isset($_POST['submit'])) {
 		echo "<script>alert('Passwords do not match.')</script>";
 	} else {
 		//Check if user with the same employee id already exists
-		$query = "SELECT * FROM users where email='$email' ";
+		$query = "SELECT * FROM aluminr where rollno='$roll' ";
 		$result = mysqli_query($conn, $query);
 		if (mysqli_num_rows($result) > 0) {
 			echo "<script>alert('User already registered. Please login.')</script>";
 		} else {
 			//Insert new employee entry into database 
-			$query = "INSERT INTO users ( first_name, last_name, email,pass) 
-				VALUES ('$name1','$name2','$email','$pwd1')";
+			$query = "INSERT INTO `alumnir`(`rollno`, `name`, `passyear`, `alcpi`, `degree`, `branch`, `alemail`, `allinkedin`, `pass`)
+			 VALUES ('$roll','$name','$year','$cpi','$degree','$branch','$email','$linkedin','$pwd1')";
 
 			$result = mysqli_query($conn, $query);
 			//If insertion is successful, then redirect to login page else throw error 
@@ -74,12 +81,32 @@ if (isset($_POST['submit'])) {
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="name1" class="form-label">First Name</label>
-							<input type="text" class="form-control" id="name1" name="name1" placeholder="First Name" required />
+							<label for="name1" class="form-label">Roll No</label>
+							<input type="text" class="form-control" id="rollno" name="rollno" placeholder="Roll No" required />
 						</div>
 						<div class="form-group">
-							<label for="name2" class="form-label">Last Name</label>
-							<input type="text" class="form-control" id="name2" name="name2" placeholder="Last Name" required />
+							<label for="name" class="form-label"> Name</label>
+							<input type="text" class="form-control" id="name" name="name" placeholder="Name" required />
+						</div>
+						<div class="form-group">
+							<label for="year" class="form-label">Year </label>
+							<input type="text" class="form-control" id="year" name="year" placeholder="Passed Out Year" required />
+						</div>
+						<div class="form-group">
+							<label for="cpi" class="form-label">CPI</label>
+							<input type="text" class="form-control" id="cpi" name="cpi" placeholder="CPI" required />
+						</div>
+						<div class="form-group">
+							<label for="degree" class="form-label">Degree</label>
+							<input type="text" class="form-control" id="degree" name="degree" placeholder="Degree" required />
+						</div>
+						<div class="form-group">
+							<label for="branch" class="form-label">Branch</label>
+							<input type="text" class="form-control" id="branch" name="branch" placeholder="Branch" required />
+						</div>
+						<div class="form-group">
+							<label for="linkedin" class="form-label">LinkedIn</label>
+							<input type="text" class="form-control" id="linkedin" name="linkedin" placeholder="Linkedin URL" required />
 						</div>
 						
 							

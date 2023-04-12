@@ -25,6 +25,39 @@ $rollno=$row['rollno'];
 
 ?>
 
+<?php
+require 'config.php';
+?>
+
+<!DOCTYPE html>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
+
+ <title>Student Details</title>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="main.php">Home</a>
+      </li>
+    
+	 
+      
+      
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      
+      <li class="nav-item">
+        <a class="nav-link" href="login.php">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+</html>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,7 +90,8 @@ div {
 }
 </style>
 <div> 
-<h2>Basic Info</h2>
+  <br><br>
+<h3>Basic Info</h3>
 </div>
 <table>
 		<tr>
@@ -73,6 +107,7 @@ div {
 
     <br>
     <h2>Career Info</h2>
+    <br>
     <?php
  
 
@@ -81,7 +116,7 @@ div {
  
  echo "<table>";
    
-echo "<tr><th>Company Name </th><th>Salary </th><th>Joined Year</th><th> Left Year</th><th> Area of Work</th><th> Position</th> <th> Location</th>  </tr>";
+echo "<tr><th>Company Name </th><th>Salary </th><th>Joined Year</th><th> Left Year</th><th> Area of Work</th><th> Position</th> <th> Location</th> <th> Update</th>  </tr>";
 while ($row = mysqli_fetch_assoc($result)) {
   echo "<tr>";
   echo "<td>" . $row['compname'] . "</td>";
@@ -92,6 +127,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
   echo "<td>" . $row['position'] . "</td>";
   echo "<td>" . $row['location'] . "</td>";
+  echo "<td><a href='editc.php?id=" . $row["rollno"] . "'>Edit</a></td>";
   echo "</tr>";
 }
 echo "</table>";
@@ -102,8 +138,12 @@ echo "<br><br>";
     <form method="get" action="updatej.php">
 		
         <button class="centered-button">Add Job Info</button>
+        
+        
+<br><br>
 
         <h2>Education Info</h2>
+       
   <?php
   
  $query = "SELECT * from alumnie where rollno = '$empid'";
@@ -111,7 +151,7 @@ echo "<br><br>";
  
  echo "<table>";
    
-echo "<tr><th>College Name </th><th>Degree </th><th>Joined Year</th><th> Left Year</th><th> Area of Study</th> <th> Location</th>  </tr>";
+echo "<tr><th>College Name </th><th>Degree </th><th>Joined Year</th><th> Left Year</th><th> Area of Study</th> <th> Location</th><th>Update</th>  </tr>";
 while ($row = mysqli_fetch_assoc($result)) {
   echo "<tr>";
   echo "<td>" . $row['collegename'] . "</td>";
@@ -122,6 +162,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
   
   echo "<td>" . $row['location'] . "</td>";
+  echo "<td><a href='edite.php?id=" . $row["rollno"] . "'>Edit</a></td>";
   echo "</tr>";
 }
 echo "</table>";
@@ -129,12 +170,12 @@ echo "<br><br>";
 ?>
 	</form>
  
-    <br>
+    
     <form method="get" action="updatep.php">
 		
         <button class="centered-button">Add Education Info</button>
 
-	</form>
+	</form><br>
   <h2> Info</h2>
     <br>
     <form method="get" action="updateiitp.php">
@@ -142,7 +183,7 @@ echo "<br><br>";
         <button class="centered-button"> Info</button>
 
 	</form>
-
+  
 
 
 

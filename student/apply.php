@@ -42,7 +42,7 @@
     if (isset($_GET["id"])) {
         $company_id = $_GET["id"];
     } else {
-        die("Company ID not specified.");
+        die("Error.");
     }
 
     //Find various fields for an  and save them in variables for display purposes 
@@ -54,8 +54,9 @@
     {
     $sql = "INSERT INTO apply (rollno, compname) VALUES ('$emp_id', '$company_id')";
     mysqli_query($conn, $sql);
-      echo "Successfully applied to this Company";
-      header("Location: main.php");
+      echo"<script>alert('Succesfully applied to this Company')</script>";
+      header("Location: eligcomp.php?message=".urlencode('Successfully applied to this Company'));
+      ;
 
     }else
     {

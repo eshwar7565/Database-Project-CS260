@@ -108,7 +108,8 @@ if (isset($_POST['submit'])) {
 							<label for="linkedin" class="form-label">LinkedIn</label>
 							<input type="text" class="form-control" id="linkedin" name="linkedin" placeholder="Linkedin URL" required />
 						</div>
-						
+					
+					
 							
 						<div class="row">
 							<div class="col-md-6 mb-4">

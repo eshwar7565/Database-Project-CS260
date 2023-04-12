@@ -16,12 +16,12 @@ $empid = $_SESSION['sess_user'];
 if (isset($_POST['submit'])) {
 	//Save all values given in respective variables 
 	
-	$collegename = $_POST['collegename'];
-    $degree = $_POST['degree'];
+	$compname = $_POST['compname'];
+    $salary = $_POST['salary'];
     $startdate=$_POST['startyear'];
     $enddate=$_POST['endyear'];
-    $aos=$_POST['aow'];
-   
+    $aow=$_POST['aow'];
+    $position=$_POST['position']; 
     $location=$_POST['location'];
 
 
@@ -29,8 +29,7 @@ if (isset($_POST['submit'])) {
 	
 
 			//Insert new employee entry into database 
-			$query = "INSERT INTO `alumnie`(`rollno`, `collegename`, `degree`, `joinyear`, `leftyear`, `areaofstudy`, `location`)
-             VALUES ('$empid','$collegename','$degree','$startdate','$enddate','$aos','$location')";
+			$query = "UPDATE  `alumnir` set isplacedbyiit='YES' , compname ='$compname',salary='$salary' where rollno='$empid'; ";
 
 			$result = mysqli_query($conn, $query);
 			//If insertion is successful, then redirect to login page else throw error 
@@ -65,7 +64,7 @@ if (isset($_POST['submit'])) {
 		<div class="row col-md-6 col-md-offset-3">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h1>Education Information </h1>
+					<h1>Job Information  placed from IITP </h1>
 				</div>
 				<div class="panel-body">
 					<form action="" method="post">
@@ -77,15 +76,15 @@ if (isset($_POST['submit'])) {
 								
 
 							</div>
-                            <p><pre>Fill educational info step wise from Btech to till highest level</p>
+                            
 						</div>
 						<div class="form-group">
-							<label for="collegename" class="form-label">College Name</label>
-							<input type="text" class="form-control" id="collegename" name="collegename" placeholder="College Name" required />
+							<label for="compname" class="form-label">Company Name</label>
+							<input type="text" class="form-control" id="compname" name="compname" placeholder="Company Name" required />
 						</div>
 						<div class="form-group">
-							<label for="degree" class="form-label"> Degree</label>
-							<input type="text" class="form-control" id="degree" name="degree" placeholder="Degree" required />
+							<label for="salary" class="form-label"> Salary</label>
+							<input type="text" class="form-control" id="salary" name="salary" placeholder="Salary" required />
 						</div>
                         <p>&ensp; Please enter in this format &ensp; 'YYYY-MM-DD'</p>
 						<div class="form-group">
@@ -98,10 +97,13 @@ if (isset($_POST['submit'])) {
 							<input type="text" class="form-control" id="endyear" name="endyear" placeholder="End Date YYYY-MM-DD" required />
 						</div>
 						<div class="form-group">
-							<label for="Areaofstudy" class="form-label">Stream</label>
-							<input type="text" class="form-control" id="aow" name="aow" placeholder="Stream" required />
+							<label for="Areaofwork" class="form-label">Field</label>
+							<input type="text" class="form-control" id="aow" name="aow" placeholder="IT,Business,.." required />
 						</div>
-						
+						<div class="form-group">
+							<label for="position" class="form-label">Position</label>
+							<input type="text" class="form-control" id="position" name="position" placeholder="Position" required />
+						</div>
 						<div class="form-group">
 							<label for="Location" class="form-label">Location</label>
 							<input type="text" class="form-control" id="location" name="location" placeholder="Location " required />

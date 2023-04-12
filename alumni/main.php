@@ -103,12 +103,43 @@ echo "<br><br>";
 		
         <button class="centered-button">Add Job Info</button>
 
+        <h2>Education Info</h2>
+  <?php
+  
+ $query = "SELECT * from alumnie where rollno = '$empid'";
+ $result=mysqli_query($conn,$query);
+ 
+ echo "<table>";
+   
+echo "<tr><th>College Name </th><th>Degree </th><th>Joined Year</th><th> Left Year</th><th> Area of Study</th> <th> Location</th>  </tr>";
+while ($row = mysqli_fetch_assoc($result)) {
+  echo "<tr>";
+  echo "<td>" . $row['collegename'] . "</td>";
+  echo "<td>" . $row['degree'] . "</td>";
+  echo "<td>" . $row['joinyear'] . "</td>";
+  echo "<td>" . $row['leftyear'] . "</td>";
+  echo "<td>" . $row['areaofstudy'] . "</td>";
+
+  
+  echo "<td>" . $row['location'] . "</td>";
+  echo "</tr>";
+}
+echo "</table>";
+echo "<br><br>";
+?>
 	</form>
-  <h2>Personal Info</h2>
+ 
     <br>
-    <form method="get" action="update.php">
+    <form method="get" action="updatep.php">
 		
-        <button class="centered-button">Update Personal Info</button>
+        <button class="centered-button">Add Education Info</button>
+
+	</form>
+  <h2> Info</h2>
+    <br>
+    <form method="get" action="updateiitp.php">
+		
+        <button class="centered-button"> Info</button>
 
 	</form>
 

@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
 		echo "<script>alert('Passwords do not match.')</script>";
 	} else {
 		//Check if user with the same employee id already exists
-		$query = "SELECT * FROM aluminr where rollno='$roll' ";
+		$query = "SELECT * FROM alumnir where rollno='$roll' ";
 		$result = mysqli_query($conn, $query);
 		if (mysqli_num_rows($result) > 0) {
 			echo "<script>alert('User already registered. Please login.')</script>";
@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
 			//If insertion is successful, then redirect to login page else throw error 
 			if ($result) {
 				echo "<script>alert('User registerd!')</script>";
-				header("Location: index.php");
+				header("Location: login.php");
 			} else {
 				echo "<script>alert('Something went wrong!')</script>";
 			}
@@ -89,7 +89,7 @@ if (isset($_POST['submit'])) {
 							<input type="text" class="form-control" id="name" name="name" placeholder="Name" required />
 						</div>
 						<div class="form-group">
-							<label for="year" class="form-label">Year </label>
+							<label for="year" class="form-label">Passed Out Year </label>
 							<input type="text" class="form-control" id="year" name="year" placeholder="Passed Out Year" required />
 						</div>
 						<div class="form-group">

@@ -30,6 +30,7 @@ $type=$row2["type"];
 $cyear=$row2["curryear"];
 
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -147,7 +148,7 @@ echo "<br><br>";
 echo "No of candidates = ";
 echo $mycount;
 echo "<br><br>";
-echo "<tr><th>ID</th><th>Name</th><th>Webmail</th><th>Action1</th><th>Action2</th></tr>";
+echo "<tr><th>ID</th><th>Name</th><th>Webmail</th><th>Action1</th><th>Action2</th><th>Resume</th></tr>";
 while ($row = mysqli_fetch_assoc($result)) {
   echo "<tr>";
   echo "<td>" . $row['rollno'] . "</td>";
@@ -155,6 +156,7 @@ while ($row = mysqli_fetch_assoc($result)) {
   echo "<td>" . $row['webmail'] . "</td>";
   echo "<td><a href='accept.php?id=" . $row["rollno"] . "'>Accept</a></td>";
   echo "<td><a href='reject.php?id=" . $row["rollno"] . "'>Reject</a></td>";
+  echo "<td><a href='blobdemo.php?id=" . $row["rollno"] . "'>View</a></td>";
   echo "</tr>";
 }
 echo "</table>";

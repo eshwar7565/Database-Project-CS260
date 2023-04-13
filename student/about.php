@@ -68,7 +68,7 @@ $empid=$_SESSION['sess_user'];
 <div class="card-container">
   <?php
     // Connect to the database
-    $conn = mysqli_connect("localhost:3308", "username", "", "project");
+    $conn = mysqli_connect("localhost", "root", "", "project");
 
     // Fetch data from the sd table
     $query = "SELECT * FROM sd where rollno='$empid'";

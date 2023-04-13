@@ -40,7 +40,7 @@ $empid=$_SESSION['sess_user'];
 ?>
 <?php
 // Connect to the database
-$conn = mysqli_connect("localhost:3308", "username", "", "project");
+$conn = mysqli_connect("localhost", "root", "", "project");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   // Get the values from the form

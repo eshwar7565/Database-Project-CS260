@@ -40,15 +40,19 @@ if (isset($_POST['submit'])) {
 <style>
 .home-button {
   display: inline-block;
-  background-color: skyblue;
+  background-color: blue;
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
   text-decoration: none;
+  margin-top: 10px;
+  margin-right: 20px;
+  margin-bottom: 30px;
+  margin-left: 40px;
 }
 
 .home-button:hover {
-  background-color: blue;
+  background-color: lightgray;
 }
 </style>
 	<div class="container">

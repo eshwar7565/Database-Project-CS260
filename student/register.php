@@ -138,7 +138,10 @@ if (isset($_POST['submit'])) {
 						
 						<div class="form-group">
 							<label for="Department" class="form-label">Department</label>
+							<br>
 							<select name="dept">
+							
+							<option value="">Select Branch</option>							
   <option value="CSE">Computer Science and Engineering</option>
   <option value="EE">Electrical Engineering</option>
   <option value="ME">Mechanical Engineering</option>

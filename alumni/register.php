@@ -102,7 +102,22 @@ if (isset($_POST['submit'])) {
 						</div>
 						<div class="form-group">
 							<label for="branch" class="form-label">Branch</label>
-							<input type="text" class="form-control" id="branch" name="branch" placeholder="Branch" required />
+							<br>
+							<select name="branch">
+							<option value="">Select Branch </option>
+  <option value="CSE">Computer Science and Engineering</option>
+  <option value="EE">Electrical Engineering</option>
+  <option value="ME">Mechanical Engineering</option>
+  <option value="CE">Civil Engineering</option>
+  <option value="MM">Materials and Metallurgical Engineering</option>
+  <option value="AI">Artificial Intelligence and DataScience</option>
+  <option value="PH">Engineering Physics  </option>
+  <option value="MC">Mathematics and Computing   </option>
+  <option value="CB">Chemical and Biochemical Engineering     </option>
+
+
+							< required />
+							 </select>
 						</div>
 						<div class="form-group">
 							<label for="linkedin" class="form-label">LinkedIn</label>

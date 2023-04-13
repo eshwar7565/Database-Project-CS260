@@ -119,7 +119,20 @@ if (isset($_POST['submit'])) {
 						
 						<div class="form-group">
 							<label for="Department" class="form-label">Department</label>
-							<input type="text" class="form-control" id="dept" name="dept" placeholder="Department" required />
+							<select name="dept">
+  <option value="CSE">Computer Science and Engineering</option>
+  <option value="EE">Electrical Engineering</option>
+  <option value="ME">Mechanical Engineering</option>
+  <option value="CE">Civil Engineering</option>
+  <option value="MM">Materials and Metallurgical Engineering</option>
+  <option value="AI">Artificial Intelligence and DataScience</option>
+  <option value="PH">Engineering Physics  </option>
+  <option value="MC">Mathematics and Computing   </option>
+  <option value="MC">Chemical and Biochemical Engineering     </option>
+
+
+							< required />
+							 </select>
 						</div>
 						<div class="form-group">
 							<label for="age" class="form-label">Age</label>

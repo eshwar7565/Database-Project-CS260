@@ -36,6 +36,21 @@ if (isset($_POST['submit'])) {
 	<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.css"> -->
 
 <body>
+<a href="../index.php" class="home-button">Home<i class="fas fa-home"></i></a>
+<style>
+.home-button {
+  display: inline-block;
+  background-color: skyblue;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.home-button:hover {
+  background-color: blue;
+}
+</style>
 	<div class="container">
 		<div class="row col-md-6 col-md-offset-3">
 			<div class="panel panel-primary">

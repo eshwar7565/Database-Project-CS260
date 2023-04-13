@@ -77,6 +77,7 @@ function logout() {
 	</style>
 </head>
 <body>
+  <br>
 <h1> <?php echo "Welcome " . $name1 ; ?> </h1>
 <style>
 		

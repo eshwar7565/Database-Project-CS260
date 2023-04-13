@@ -52,18 +52,33 @@ $cyear=$row2["curryear"];
     <ul class="navbar-nav ml-auto">
       
       <li class="nav-item">
-        <a class="nav-link" href="login.php">Logout</a>
+        <a class="nav-link" onclick=logout()>Logout</a>
       </li>
     </ul>
   </div>
 </nav>
+
+<script>
+function logout() {
+  if (window.confirm("Are you sure you want to log out?")) {
+    // Send request to server to invalidate session and log out user
+    // ...
+    alert("You have been logged out."); // Display a message to the user
+    window.location.href = "logout.php"; // Redirect the user to the login page
+  }
+}
+</script>
+
+
 </html>
 
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Company Dashboard</title>
+    <br>
 	<style>
+      
 	
 	</style>
 </head>
@@ -91,6 +106,7 @@ div {
 }
 </style>
 <div> 
+<br>
 <h2>Eligibility</h2>
 </div>
 
@@ -101,6 +117,7 @@ div {
 			<td>Company Name </td>
 			<td><?php echo $name1 ;echo "\t" ; ?></td>
             <br>
+          
         </tr>
         <tr>
             <td>Recruiting Since  </td>
@@ -175,7 +192,7 @@ $result = mysqli_query($conn, $query);
 // Generate HTML table to display data
 echo "<br><br>";
 echo "<table>";
-echo "List of applied candidates who are eligible" ;
+echo "<h5>List of applied candidates who are eligible</h5>" ;
 echo "<br><br>";
 
 echo "No of candidates = ";
@@ -207,13 +224,13 @@ $result2 = mysqli_query($conn, $query2);
 // Generate HTML table to display data
 echo "<br><br>";
 echo "<table>";
-echo "List of applied candidates who are not eligible" ;
+echo "<h5>List of applied candidates who are not eligible</h5>" ;
 echo "<br><br>";
 
 echo "No of candidates = ";
 echo $mycount2;
 echo "<br><br>";
-echo "<tr><th>ID</th><th>Name</th><th>Webmail</th><th>Action1</th><th>Action2</th></tr>";
+echo "<tr><th>ID</th><th>Name</th><th>Webmail</th><th>Action1</th><th>Action2</th><th>Resume</th></tr>";
 while ($row = mysqli_fetch_assoc($result2)) {
   echo "<tr>";
   echo "<td>" . $row['rollno'] . "</td>";
@@ -221,6 +238,7 @@ while ($row = mysqli_fetch_assoc($result2)) {
   echo "<td>" . $row['webmail'] . "</td>";
   echo "<td><a href='accept.php?id=" . $row["rollno"] . "'>Accept</a></td>";
   echo "<td><a href='reject.php?id=" . $row["rollno"] . "'>Reject</a></td>";
+  echo "<td><a href='blobdemo.php?id=" . $row["rollno"] . "'>View</a></td>";
   echo "</tr>";
 }
 echo "</table>";
@@ -233,7 +251,7 @@ $mycount = mysqli_num_rows($query);
 // Close database connection
 echo "<br><br>";
 echo "<table>";
-echo "List of Recruited candidates" ;
+echo "<h4>List of Recruited candidates</h4>" ;
 echo "<br><br>";
 
 echo "No of candidates = ";

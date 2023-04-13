@@ -1,6 +1,6 @@
 <?php
 //Since port has been changed on XAMPP, change MySQL server connections.
-$servername = "localhost:3308";
+$servername = "localhost";
 $username = "root";
 $password = "";
 $database="project";

@@ -51,11 +51,21 @@ require 'config.php';
     <ul class="navbar-nav ml-auto">
       
       <li class="nav-item">
-        <a class="nav-link" href="login.php">Logout</a>
+        <a class="nav-link"  onclick=logout()>Logout</a>
       </li>
     </ul>
   </div>
 </nav>
+<script>
+function logout() {
+  if (window.confirm("Are you sure you want to log out?")) {
+    // Send request to server to invalidate session and log out user
+    // ...
+    alert("You have been logged out."); // Display a message to the user
+    window.location.href = "logout.php"; // Redirect the user to the login page
+  }
+}
+</script>
 </html>
 
 <!DOCTYPE html>

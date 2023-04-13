@@ -37,7 +37,7 @@ h2 {font-family: Georgia,Verdana, Arial, Helvetica, sans-serif, "MS sans serif";
 <tr height = "30%"><td>
 <table  align = "center" border=0 cellspacing=0 cellpadding=4>
 <tr><td width=30>&nbsp;</td>
-<td bgcolor=skyblue� align=center width=100><a href="student/login.php" alt ="Id" title = "For Student">Student </a></td>
+<td bgcolor=blue align=center width=100><a href="student/login.php" alt ="Id" title = "For Student">Student </a></td>
 <td width=30>&nbsp;</td>
 <td width=30>&nbsp;</td>
 <td bgcolor=red align=center width=100 ><a href="alumni/login.php" alt ="Id" title = "For Administration">Alumni</a></td>
@@ -47,8 +47,14 @@ h2 {font-family: Georgia,Verdana, Arial, Helvetica, sans-serif, "MS sans serif";
 <td width=30>&nbsp;</td>
 
 <td width=30>&nbsp;</td>
+<td bgcolor=#40E0D0 align=center width=100 ><a href="statistics/view.php" alt ="Id" title = "For Faculty">Statistics</a></td>
+<td width=30>&nbsp;</td>
+
+<td width=30>&nbsp;</td>
+
 </tr>
-<tr><td colspan=12 bgcolor=#3366cc><img width=1 height=1 alt=""></td></tr>
+
+<tr><td colspan=12 bgcolor=green><img width=1 height=1 alt=""></td></tr>
 <tr><td colspan=15> &nbsp;</td></tr>
 </table>
 </td></tr>

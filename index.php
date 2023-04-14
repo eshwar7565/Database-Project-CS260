@@ -47,7 +47,7 @@ h2 {font-family: Georgia,Verdana, Arial, Helvetica, sans-serif, "MS sans serif";
 <td width=30>&nbsp;</td>
 
 <td width=30>&nbsp;</td>
-<td bgcolor=#40E0D0 align=center width=100 ><a href="statistics/view.php" alt ="Id" title = "For Faculty">Statistics</a></td>
+<td bgcolor=#40E0D0 align=center width=100 ><a href="statistics/main.php" alt ="Id" title = "For Faculty">Statistics</a></td>
 <td width=30>&nbsp;</td>
 
 <td width=30>&nbsp;</td>

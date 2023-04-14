@@ -1,21 +1,8 @@
 <?php
-    //Connect to MySQL server 
-    require 'config.php';
-    session_start();
-   
 
-   
-    if (isset($_GET["id"])) {
-        $roll = $_GET["id"];
-    } else {
-        die(" ID not specified.");
-    }
+class BlobDemo {
 
-
-
-class BobDemo {
-
-    const DB_HOST = 'localhost:3308';
+    const DB_HOST = 'localhost';
     const DB_NAME = 'project';
     const DB_USER = 'root';
     const DB_PASSWORD = '';
@@ -42,14 +29,14 @@ class BobDemo {
         }
     }
 
-    
     /**
-     * select data from the the files
-     * @param varchar $id
+     * select data from the files
+     * @param int $id
      * @return array contains mime type and BLOB data
      */
     public function selectBlob($id) {
-        $sql = "SELECT resume FROM files WHERE id = rollno;";
+
+        $sql = "SELECT resume FROM sd WHERE rollno = :id;";
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute(array(":id" => $id));
@@ -57,8 +44,7 @@ class BobDemo {
 
         $stmt->fetch(PDO::FETCH_BOUND);
 
-        return array(
-            "data" => $resume);
+        return $resume;
     }
 
     /**
@@ -71,9 +57,24 @@ class BobDemo {
 
 }
 
-$blobObj = new BobDemo();
+// Check if the rollno parameter is provided in the URL
+if(isset($_GET["id"])) {
+    $rollno = $_GET["id"];
+    
+    // connect to the database
+    require_once 'config.php';
+    $blobObj = new BlobDemo();
+    
+    // retrieve the file associated with the rollno
+    $resume = $blobObj->selectBlob($rollno);
+    
+    // set the content type header to display PDF file
+    header("Content-Type: application/pdf");
+    
+    // output the file data
+    echo $resume;
+} else {
+    header("Location: main.php");
+}
 
-
-$a = $blobObj->selectBlob($roll);
-header("Content-Type:" . $roll);
-echo $a['resume'];
+?>

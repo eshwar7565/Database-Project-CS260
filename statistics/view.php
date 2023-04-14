@@ -1,31 +1,71 @@
+
+<head>
+    <style>
+        h1 {
+            font-family: 'Architects Daughter', cursive;
+            font-size: 42px;
+            text-align: left;
+            margin-left: 375px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Architects+Daughter&display=swap" rel="stylesheet">
+</head>
+<style>
+table {
+  border-collapse: collapse;
+  width: 80%;
+}
+th, td {
+  text-align: center;
+  padding: 10px;
+  width: 10%;
+}
+th {
+  background-color: #008080;
+  color: white;
+  font-size: 18px;
+  text-transform: uppercase;
+  border-top: 3px solid blue;
+  border-bottom: 3px solid blue;
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+td {
+  border: 1px solid #ddd;
+}
+tr:hover {
+  background-color: #ddd;
+}
+</style>
+
 <?php
 include 'config.php';
 //Find various fields for an  and save them in variables for display purposes 
 
 // Select all rows from table
-$query = "select branch";
+$query = "select * from branchwiseyear";
 $result = mysqli_query($conn, $query);
- $mycount = mysqli_num_rows($result);
 
-
+echo '<div>';
+echo '<h1>Placement Stats</h1>';
 // Generate HTML table to display data
-echo "<br><br>";
-echo "<table>";
-echo "<h5>List of applied candidates who are eligible</h5>" ;
-echo "<br><br>";
-
-echo "No of candidates = ";
-echo $mycount;
-echo "<br><br>";
-echo "<tr><th>ID</th><th>Name</th><th>Webmail</th><th>Action1</th><th>Action2</th><th>Resume</th></tr>";
+echo '<table>';
+echo '<tr><th>YEAR</th><th>AI</th><th>CBE</th><th>CE</th><th>CSE</th><th>EE</th><th>EP</th><th>MC</th><th>ME</th><th>MME</th></tr>';
 while ($row = mysqli_fetch_assoc($result)) {
-  echo "<tr>";
-  echo "<td>" . $row['rollno'] . "</td>";
-  echo "<td>" . $row['cpi'] . "</td>";
-  echo "<td>" . $row['webmail'] . "</td>";
-  echo "<td><a href='accept.php?id=" . $row["rollno"] . "'>Accept</a></td>";
-  echo "<td><a href='reject.php?id=" . $row["rollno"] . "'>Reject</a></td>";
-  echo "<td><a href='blobdemo.php?id=" . $row["rollno"] . "'>View</a></td>";
-  echo "</tr>";
+    echo '<tr>';
+    echo '<td>' . ($row['Year'] ?? 0) . '</td>';
+    echo '<td>' . ($row['AI'] ?? 0) . '</td>';
+    echo '<td>' . ($row['CBE'] ?? 0) . '</td>';
+    echo '<td>' . ($row['CE'] ?? 0) . '</td>';
+    echo '<td>' . ($row['CSE'] ?? 0) . '</td>';
+    echo '<td>' . ($row['EE'] ?? 0) . '</td>';
+    echo '<td>' . ($row['EP'] ?? 0) . '</td>';
+    echo '<td>' . ($row['MC'] ?? 0) . '</td>';
+    echo '<td>' . ($row['ME'] ?? 0) . '</td>';
+    echo '<td>' . ($row['MME'] ?? 0) . '</td>';
+    echo '</tr>';
 }
+echo '</table>';
+
 ?>

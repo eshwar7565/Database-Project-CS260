@@ -29,7 +29,10 @@ $mode=$row2["mode"];
 $type=$row2["type"];
 $cyear=$row2["curryear"];
 
+
 ?>
+
+</div>
 <!DOCTYPE html>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
 
@@ -165,9 +168,9 @@ div {
         <button class="centered-button">Update</button>
 
 	</form>
-
-
-
+<?php
+  echo "<hr style='border: 1px dashed black;'>";
+?>
 
 </html>
 	
@@ -211,7 +214,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 echo "</table>";
 
-
+echo "<hr style='border: 1px dashed black;'>";
 // Select all rows from table
 $query2 = "SELECT * from sd,companydetails,apply 
 where '$empid'=companydetails.compname and '$empid'=apply.compname and apply.rollno=sd.rollno and companydetails.mincpi>sd.cpi";
@@ -243,20 +246,21 @@ while ($row = mysqli_fetch_assoc($result2)) {
 }
 echo "</table>";
 
+
 // Query database
 $query = mysqli_query($conn, "SELECT rollno, webmail , cpi FROM recruitment natural join sd where compname='$empid'");
 $mycount = mysqli_num_rows($query);
 // Fetch data
 
 // Close database connection
+echo "<hr style='border: 1px dashed black;'>";
 echo "<br><br>";
 echo "<table>";
 echo "<h4>List of Recruited candidates</h4>" ;
 echo "<br><br>";
 
-echo "No of candidates = ";
-echo $mycount;
-echo "<br><br>";
+echo "<h7>No of recruited candidates = $mycount </h7> ";
+
 echo "<tr><th>RollNo</th><th>CPI</th><th>Webmail</th></tr>";
 while ($row = mysqli_fetch_assoc($query)) {
   echo "<tr>";
@@ -268,6 +272,128 @@ while ($row = mysqli_fetch_assoc($query)) {
 echo "</table>";
 
 ?>
+<?php
+echo "<hr style='border: 1px dashed black;'>";
+?>
+<?php
+echo "<br><br>";
+echo "<table>";
+echo "<h4>List of Appearing Years in IITP</h4>" ;
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Table with Add and Delete Buttons</title>
+	<style type="text/css">
+		.container {
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.table-container {
+			width: 70%;
+			margin: 0 auto;
+		}
+		table {
+			border-collapse: collapse;
+			width: 60%;
+		}
+		th, td {
+			padding: 8px;
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+		}
+		th {
+			background-color: #4CAF50;
+			color: white;
+		}
+		tr:nth-child(even) {background-color: #f2f2f2;}
+		.add-delete {
+			display: flex;
+			align-items: center;
+			margin-top: 20px;
+			margin-left: 30px;
+		}
+		.add-btn, .delete-btn {
+			background-color: #4CAF50;
+			color: white;
+			padding: 8px 16px;
+			margin-right: 0px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+		.delete-btn {
+			background-color: #f44336;
+		}
+		.add-btn:hover, .delete-btn:hover {
+			background-color: #3e8e41;
+		}
+		.add-btn:active, .delete-btn:active {
+			background-color: #3e8e41;
+			box-shadow: 0 5px #666;
+			transform: translateY(4px);
+		}
+	</style>
+</head>
+<body>
+
+<div style="float: left;">
+<div class="container">
+	<div class="table-container">
+		<table>
+			<thead>
+				<tr>
+					<th>Year</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php
+
+				// Check if the connection was successful
+				if (!$conn) {
+				    die('Connection failed: ' . mysqli_connect_error());
+				}
+
+				// Fetch the data from the table
+				$sql = "SELECT year FROM yearwisecomp where compname='$empid'";
+				$result = mysqli_query($conn, $sql);
+
+				// Display the data as a HTML table
+				while ($row = mysqli_fetch_assoc($result)) {
+				    echo '<tr>';
+				    echo '<td>' . $row['year'] . '</td>';
+				    echo '<td><a href="deleteyear.php?year=' . $row['year'] . '">Delete</a></td>';
+				    echo '</tr>';
+				}
+
+				// Close the database connection
+				mysqli_close($conn);
+        echo "<br><br>";
+				?>
+			</tbody>
+		</table>
+	</div>
+	<form method="POST" action="addyear.php">
+  <label for="year">Year:</label>
+  <input type="text" id="year" name="year">
+  <input type="hidden" name="compname" value="<?php echo $empid; ?>">
+  <button type="submit">Add</button>
+</form>
+
+<?php
+echo "<hr style='border: 1px dashed black;'>";
+?>
+</div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
 
 
 

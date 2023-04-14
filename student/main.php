@@ -2,6 +2,7 @@
 require 'config.php';
 require 'config.php';
 session_start();
+$emp_id = $_SESSION['sess_user'];
 
 
 //If there is no session user, then redirect to login page 
@@ -52,40 +53,129 @@ function logout() {
 </script>
 
 </html>
-
-
-
 <!DOCTYPE html>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
 
  <title>Student Dashboard</title>
+ </html>
+<?php
 
+class BlobDemo {
 
- <div class="d-flex justify-content-center align-items-center" style="height: 80vh;">
-  <div style="width: 400px; background-color: #fff; border-radius: 5px; padding: 20px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">
-    <h2 style="font-size: 1.5rem; font-weight: bold; text-align: center; margin-bottom: 20px;">Upload an updated resume</h2>
-    <form action="submit.php" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
-      <div class="form-group">
-        <label for="project_name" style="font-size: 1.1rem; font-weight: bold;">Enter Roll No:</label>
-        <input type="text" name="project_name" class="form-control" style="border: 1px solid #ccc; border-radius: 3px; padding: 5px; width: 100%;">
-      </div>
-      <div class="form-group">
-        <label for="pdf_file" style="font-size: 1.1rem; font-weight: bold;">Select PDF file:</label>
-        <input type="file" name="pdf_file" accept=".pdf" style="border: 1px solid #ccc; border-radius: 3px; padding: 5px; width: 100%;">
-        <input type="hidden" name="MAX_FILE_SIZE" value="67108864"/> 
-      </div>
-      <div class="form-group">
-        <input type="submit" name="submit" value="Submit" class="btn btn-primary" style="padding: 10px 20px; background-color: #007bff; border: none; border-radius: 3px; cursor: pointer; width: 100%;">
-      </div>
+    const DB_HOST = 'localhost';
+    const DB_NAME = 'project';
+    const DB_USER = 'root';
+    const DB_PASSWORD = '';
+
+    private $pdo = null;
+
+    public function __construct() {
+        $conStr = sprintf("mysql:host=%s;dbname=%s;charset=utf8", self::DB_HOST, self::DB_NAME);
+
+        try {
+            $this->pdo = new PDO($conStr, self::DB_USER, self::DB_PASSWORD);
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function updateBlob($id, $filePath, $mime) {
+        $blob = fopen($filePath, 'rb');
+
+        $sql = "UPDATE sd SET resume = :resume, mime = :mime WHERE rollno = :id";
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->bindParam(':resume', $blob, PDO::PARAM_LOB);
+        $stmt->bindParam(':mime', $mime);
+        $stmt->bindParam(':id', $id);
+
+        return $stmt->execute();
+    }
+
+    public function getPdo() {
+        return $this->pdo;
+    }
+
+    public function __destruct() {
+        $this->pdo = null;
+    }
+
+}
+
+if(isset($_POST['submit'])) {
+    $id = $emp_id;
+    $file = $_FILES['resume'];
+    $fileName = $file['name'];
+    $fileTmpName = $file['tmp_name'];
+    $fileSize = $file['size'];
+    $fileError = $file['error'];
+    $fileType = $file['type'];
+
+    $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+    $allowed = array('pdf');
+
+    if (in_array($fileExt, $allowed)) {
+        if ($fileError === 0) {
+            if ($fileSize < 1000000) {
+                $blobObj = new BlobDemo();
+                $filePath = $fileTmpName;
+                $mime = mime_content_type($filePath);
+                $result = $blobObj->updateBlob($id, $filePath, $mime);
+                if($result) {
+                    echo "Resume uploaded successfully.";
+                } else {
+                    echo "Resume upload failed, please try again.";
+                }
+            } else {
+                echo "Your file is too large.";
+            }
+        } else {
+            echo "There was an error uploading your file.";
+        }
+    } else {
+        echo "You cannot upload files of this type.";
+    }
+}
+
+if(isset($_POST['view'])) {
+    $id = $emp_id;
+    $blobObj = new BlobDemo();
+    $pdo = $blobObj->getPdo();
+
+    $sql = "SELECT resume, mime FROM sd WHERE rollno = :id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $stmt->bindColumn(1, $data, PDO::PARAM_LOB);
+    $stmt->bindColumn(2, $mime);
+    $stmt->fetch(PDO::FETCH_BOUND);
+
+    header("Content-Type: {$mime}");
+    readfile($data);
+    exit();
+}
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Resume</title>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data">
+        <label for="id">Enter your rollno:</label>
+        <input type="text" id="id" name="id"><br><br>
+        <input type="file" name="resume"><br><br>
+        <button type="submit" name="submit">Upload</button>
     </form>
-  </div>
-</div>
-
-</div>
-
- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384–9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <br>
+    <h1>Click to view resume:</h1>
+    <form method="post">
+        <button type="submit" name="view">View</button>
+    </form>
+</body>
 </html>
 

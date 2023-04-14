@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Side Navigation Bar</title>
+	<title>Placement Stats </title>
 	<style>
 		body {
 			margin: 0;
@@ -45,6 +45,7 @@
 </head>
 <body>
 	<div id="navbar">
+	<a href="../index.php">Home </a>
 		<a href="ywca1.php">Year Wise Companies Appeared</a>
 		<a href="tec.php">Top Expensive Companies</a>
 		<a href="view.php">Branch wise Placements</a>
@@ -52,7 +53,7 @@
 	</div>
 
 	<div id="main">
-		<p>Welcome to my Statistics!</p>
+		<p> Placement Statistics!</p>
 	</div>
 </body>
 </html>

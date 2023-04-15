@@ -165,17 +165,81 @@ if(isset($_POST['view'])) {
     <title>Upload Resume</title>
 </head>
 <body>
-    <form method="post" enctype="multipart/form-data">
-        <label for="id">Enter your rollno:</label>
-        <input type="text" id="id" name="id"><br><br>
-        <input type="file" name="resume"><br><br>
-        <button type="submit" name="submit">Upload</button>
-    </form>
-    <br>
+
+<div class="container">
+  <form method="post" enctype="multipart/form-data">
+    <label for="id">Enter your rollno:</label>
+    <input type="text" id="id" name="id"><br><br>
+    <input type="file" name="resume"><br><br>
+    <button type="submit" name="submit">Upload</button>
+  </form>
+  <div class="view-section">
     <h1>Click to view resume:</h1>
     <form method="post">
-        <button type="submit" name="view">View</button>
+      <button type="submit" name="view">View</button>
     </form>
+  </div>
+</div>
+
+<style>
+  .container {
+  max-width: 500px;
+  margin-top: 100px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+input[type="text"], input[type="file"] {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.view-section {
+  margin-top: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+button[name="view"] {
+  padding: 10px 20px;
+  background-color: #008CBA;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+</style>
+
+
 </body>
 </html>
 

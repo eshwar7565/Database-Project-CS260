@@ -52,10 +52,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $age = $_POST['age'];
   $aoi = $_POST['aoi'];
   $branch = $_POST['branch'];
-  $salary = $_POST['salary'];
+ 
 
   // Update the values in the sd table
-  $query = "UPDATE sd SET webmail='$webmail', c10='$c10', c12='$c12', cpi='$cpi', special='$special', age='$age', aoi='$aoi', branch='$branch', salary='$salary' WHERE rollno='$empid'";
+  $query = "UPDATE sd SET webmail='$webmail', c10='$c10', c12='$c12', cpi='$cpi', special='$special', age='$age', aoi='$aoi', branch='$branch' WHERE rollno='$empid'";
   $result = mysqli_query($conn, $query);
 
   if ($result) {
@@ -125,12 +125,7 @@ mysqli_close($conn);
       <input type="text" id="branch" name="branch" class="form-control" value="<?php echo $row['branch']; ?>">
     </div>
   </div>
-  <div class="form-group row">
-    <label for="salary" class="col-sm-2 col-form-label">Salary:</label>
-    <div class="col-sm-10">
-      <input type="text" id="salary" name="salary" class="form-control" value="<?php echo $row['salary']; ?>">
-    </div>
-  </div>
+ 
   <div class="form-submit">
   <input type="submit" id="button" name="submit" value="Update">
 </div>

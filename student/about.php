@@ -77,16 +77,16 @@ $empid=$_SESSION['sess_user'];
     // Loop through the results and display them in cards
     while ($row = mysqli_fetch_assoc($result)) {
       echo '<div class="card">';
-      echo '<p> <strong>ROll No:</strong>'. $row['rollno'] . '</p>';
-      echo '<p><strong>Webmail:</strong> ' . $row['webmail'] . '</p>';
-      echo '<p><strong>Class 10:</strong> ' . $row['c10'] . '</p>';
-      echo '<p><strong>Class 12:</strong> ' . $row['c12'] . '</p>';
-      echo '<p><strong>CPI:</strong> ' . $row['cpi'] . '</p>';
-      echo '<p><strong>Specialization:</strong> ' . $row['special'] . '</p>';
-      echo '<p><strong>Age:</strong> ' . $row['age'] . '</p>';
-      echo '<p><strong>Area Of Interest:</strong> ' . $row['aoi'] . '</p>';
-      echo '<p><strong>Branch:</strong> ' . $row['branch'] . '</p>';
-      echo '<p><strong>Salary:</strong> ' . $row['salary'] . '</p>';
+      echo '<p> <strong>Roll No   &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp: &nbsp </strong>'. $row['rollno'] . '</p>';
+      echo '<p><strong>Email   &nbsp&nbsp&nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp: &nbsp</strong> ' . $row['webmail'] . '</p>';
+      echo '<p><strong>Class 10   &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp: &nbsp</strong> ' . $row['c10'] . '</p>';
+      echo '<p><strong>Class 12   &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp: &nbsp</strong> ' . $row['c12'] . '</p>';
+      echo '<p><strong>CPI &nbsp    &nbsp &nbsp &nbsp&nbsp  &nbsp  &nbsp &nbsp &nbsp &nbsp: &nbsp</strong> ' . $row['cpi'] . '</p>';
+      echo '<p><strong>Specialization : &nbsp</strong> ' . $row['special'] . '</p>';
+      echo '<p><strong>Age &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp  &nbsp &nbsp&nbsp:&nbsp</strong> ' . $row['age'] . '</p>';
+      echo '<p><strong>AreaofInterest: &nbsp</strong> ' . $row['aoi'] . '</p>';
+      echo '<p><strong>Branch &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp: &nbsp</strong> ' . $row['branch'] . '</p>';
+      echo '<p><strong>Salary  &nbsp &nbsp&nbsp&nbsp &nbsp &nbsp &nbsp  : &nbsp </strong> ' . $row['salary'] . '</p>';
       echo '<div class="card-buttons">';
       echo '<a href="update.php?id=' . $row['rollno'] . '">Update</a>';
       echo '</div>';
@@ -111,7 +111,7 @@ $empid=$_SESSION['sess_user'];
     border-radius: 5px;
     padding: 10px;
     box-shadow: 2px 2px 5px #ccc;
-    width: 300px;
+    width: 500px;
     margin-bottom: 20px;
     margin-top: 20px;
   }

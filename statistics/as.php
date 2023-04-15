@@ -51,6 +51,7 @@
 		<a href="tec.php">Top Expensive Companies</a>
 		<a href="view.php">Branch wise Placements</a>
         <a href="as.php">Alumni Selections</a>
+        <a href="mma.php">Average Minimum Maximum Packages</a>
 	</div>
 
 <head>

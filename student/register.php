@@ -30,8 +30,8 @@ if (isset($_POST['submit'])) {
 			echo "<script>alert('User already registered. Please login.')</script>";
 		} else {
 			//Insert new employee entry into database 
-			$query = "INSERT INTO sd ( rollno,webmail,c10,c12,cpi,special,aoi,branch,age,pass) 
-				VALUES ('$rollno','$email',$c10,$c12,$cpi,'$special','$aoi','$dept','$age','$pwd1')";
+			$query = "INSERT INTO sd ( rollno,webmail,c10,c12,cpi,special,aoi,branch,age,pass,compname,salary,mime) 
+				VALUES ('$rollno','$email',$c10,$c12,$cpi,'$special','$aoi','$dept','$age','$pwd1','',0,'-')";
 
 			$result = mysqli_query($conn, $query);
 			//If insertion is successful, then redirect to login page else throw error 

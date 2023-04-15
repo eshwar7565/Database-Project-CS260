@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
 			//Insert new employee entry into database 
 			$query = "INSERT INTO companyregister ( compname,year, email,pass) 
 				VALUES ('$name1','$year','$email','$pwd1')";
-				$query2="INSERT INTO companydetails (minqualification,mincpi,compname,salary,mode,type,curryear) values (null,null,'$name1',null,null,null,null)";
+				//$query2="INSERT INTO companydetails (minqualification,mincpi,compname,salary,mode,type,curryear) values (null,null,'$name1',null,null,null,null)";
 				
 			$result = mysqli_query($conn, $query);
 			$result2=mysqli_query($conn,$query2);

@@ -1,32 +1,4 @@
-<!-- 
 <?php
-
-
-// Check if the form has been submitted
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-   
-
-    // $name = $_POST["name"];
-    // $email = $_POST["email"];
-    // $resume = $_FILES["resume"]["name"];
-
-    // // Upload the student's resume to the server
-    // $target_dir = "resumes/";
-    // $target_file = $target_dir . basename($_FILES["resume"]["name"]);
-
-    // if (move_uploaded_file($_FILES["resume"]["tmp_name"], $target_file)) {
-        // Insert the student's application into the database
-    
-    // } else {
-        // echo "Sorry, there was an error uploading your file.";
-    // }
-// }
-
-// mysqli_close($conn);
-// ?> -->
-
- <?php
     //Connect to MySQL server 
     require 'config.php';
     session_start();

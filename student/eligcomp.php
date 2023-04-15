@@ -43,7 +43,7 @@ require 'config.php';
 $sql = "select * from companyregister where compname not in(
   (select compname from reject) union
   (select compname from sd where sd.rollno='$emp_id') union
-  (select compname from companyregister where salary<(select salary from sd where rollno='$emp_id'))";
+  (select companyregister.compname from companyregister,sd where companyregister.salary<sd.salary and sd.rollno='$emp_id'))";
 $result = mysqli_query($conn, $sql);
 
 // Display the list of companies on the web page

@@ -9,3 +9,5 @@
 	$minqual=$_POST['minqual'];
     $type=$_POST['type'];
     $type=$_POST['year'];
+
+(2016,'Google'),(2017,'Google'),(2018,'Google'),(2019,'Google'),(2020,'Google'),(2021,'Google'),(2023,'Google')

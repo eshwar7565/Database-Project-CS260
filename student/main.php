@@ -30,6 +30,9 @@ if (!isset($_SESSION['sess_user'])) {
 	  <li class="nav-item">
         <a class="nav-link" href="eligcomp.php">Apply For Job</a>
       </li>
+      <!--<li class="nav-item">
+        <a class="nav-link" href="jobq.php">Search Jobs</a>
+      </li>-->
       
       
     </ul>

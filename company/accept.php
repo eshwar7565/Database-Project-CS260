@@ -47,55 +47,34 @@
     }
 
     //Find various fields for an  and save them in variables for display purposes 
-    
-    $query = "select * from recruitment where rollno='$roll'";
-    $result = mysqli_query($conn, $query);
-    $sql1="select salary into @salary from companydetails where compname='$emp_id'";
-    
-    mysqli_query($conn,$sql1);
-    $query2="select @salary";
+    $query = "select salary into @studsalary from sd where rollno='$emp_id'";
+    mysqli_query($conn,$query);
+    $query2="select @studsalary";
     $result2=mysqli_query($conn,$query2);
     $row=mysqli_fetch_assoc($result2);
-    $salary=$row['@salary'];
+    $studsalary=$row['@studsalary'];
 
-    if(mysqli_num_rows($result)==0)
-    {
-    $sql = "INSERT INTO recruitment (rollno, compname, salary) VALUES ('$roll', '$emp_id', @salary)";
+    $query = "select salary into @csalary from companyregister where compname='$emp_id'";
+    mysqli_query($conn,$query);
+    $query2="select @csalary";
+    $result2=mysqli_query($conn,$query2);
+    $row=mysqli_fetch_assoc($result2);
+    $salary=$row['@csalary'];
+    
+
+    if($studsalary<=$salary){
+    $sql = "update sd set compname='$emp_id',salary='$salary' where rollno='$roll'";
     mysqli_query($conn, $sql);
-    $sql = "update sd set salary='$salary' where rollno='$roll'";
-    mysqli_query($conn,$sql);
-      echo "Successfully accepted";
-      header("Location: main.php");
-
+    echo "Successfully accepted";
+    header("Location: main.php");
     }else
     {
-        $sql2="select salary into @ssalary from sd where '$roll'=rollno";
-        mysqli_query($conn,$sql2);
-        $query2="select @ssalary";
-        $result2=mysqli_query($conn,$query2);
-        $row=mysqli_fetch_assoc($result2);
-        $ssalary=$row['@ssalary'];
-        
-        if($salary>$ssalary){
-            $sql3="update recruitment set salary='$salary' where rollno='$roll'";
-            $sql4="update recruitment set compname='$emp_id' where rollno='$roll'";
-            $sql = "update sd set salary='$salary' where rollno='$roll'";
-            mysqli_query($conn,$sql3);
-            mysqli_query($conn,$sql4);
-            mysqli_query($conn,$sql);
-            echo "Successfully accepted";
-            header("Location: main.php");
-        }
-        else{
-            echo "Student is not interested sorry.";
-        }
+        echo "Student is not interested sorry.";
        
     }
 
     $sql="delete from apply where '$roll'=rollno and '$emp_id'=compname";
     mysqli_query($conn,$sql);
-
-    
 
     ?>
 

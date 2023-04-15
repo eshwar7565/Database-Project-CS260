@@ -56,7 +56,6 @@
     mysqli_query($conn, $sql);
       echo"<script>alert('Succesfully applied to this Company')</script>";
       header("Location: eligcomp.php?message=".urlencode('Successfully applied to this Company'));
-      ;
 
     }else
     {

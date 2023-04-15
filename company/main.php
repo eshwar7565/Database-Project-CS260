@@ -15,19 +15,16 @@ $empid = $_SESSION['sess_user'];
 $result = mysqli_query($conn, "SELECT * FROM companyregister WHERE compname='$empid'");
 $row = mysqli_fetch_array($result);
 
-$result2 = mysqli_query($conn, "SELECT * FROM companydetails WHERE compname='$empid'");
-$row2 = mysqli_fetch_array($result2);
-
 $name1 = $row["compname"];
 $reyear = $row["year"];
 $email = $row["email"];
 
-$mincpi=$row2["mincpi"];
-$minqual=$row2['minqualification'];
-$salary=$row2["salary"];
-$mode=$row2["mode"];
-$type=$row2["type"];
-$cyear=$row2["curryear"];
+$mincpi=$row["mincpi"];
+$minqual=$row['minqualification'];
+$salary=$row["salary"];
+$mode=$row["mode"];
+$type=$row["type"];
+$cyear=$row["curryear"];
 
 
 ?>
@@ -186,8 +183,8 @@ div {
 //Find various fields for an  and save them in variables for display purposes 
 
 // Select all rows from table
-$query = "SELECT * from sd,companydetails,apply 
-where '$empid'=companydetails.compname and '$empid'=apply.compname and apply.rollno=sd.rollno and companydetails.mincpi<=sd.cpi";
+$query = "SELECT * from sd,companyregister,apply 
+where '$empid'=companyregister.compname and '$empid'=apply.compname and apply.rollno=sd.rollno and companyregister.mincpi<=sd.cpi";
 $result = mysqli_query($conn, $query);
  $mycount = mysqli_num_rows($result);
 
@@ -215,13 +212,14 @@ while ($row = mysqli_fetch_assoc($result)) {
 echo "</table>";
 
 echo "<hr style='border: 1px dashed black;'>";
+
+
+
 // Select all rows from table
-$query2 = "SELECT * from sd,companydetails,apply 
-where '$empid'=companydetails.compname and '$empid'=apply.compname and apply.rollno=sd.rollno and companydetails.mincpi>sd.cpi";
+$query2 = "SELECT * from sd,companyregister,apply 
+where '$empid'=companydregister.compname and '$empid'=apply.compname and apply.rollno=sd.rollno and companyregister.mincpi>sd.cpi";
 $result2 = mysqli_query($conn, $query2);
  $mycount2 = mysqli_num_rows($result2);
- 
-
  
 
 // Generate HTML table to display data
@@ -248,7 +246,7 @@ echo "</table>";
 
 
 // Query database
-$query = mysqli_query($conn, "SELECT rollno, webmail , cpi FROM recruitment natural join sd where compname='$empid'");
+$query = mysqli_query($conn, "SELECT rollno, webmail , cpi FROM sd where compname='$empid'");
 $mycount = mysqli_num_rows($query);
 // Fetch data
 
@@ -283,7 +281,6 @@ echo "<h4>List of Appearing Years in IITP</h4>" ;
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Table with Add and Delete Buttons</title>
 	<style type="text/css">
 		.container {
 			display: flex;

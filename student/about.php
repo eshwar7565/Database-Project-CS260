@@ -70,6 +70,7 @@ $empid=$_SESSION['sess_user'];
     // Connect to the database
 
     // Fetch data from the sd table
+    echo $empid;
     $query = "SELECT * FROM sd where rollno='$empid'";
     $result = mysqli_query($conn, $query);
 

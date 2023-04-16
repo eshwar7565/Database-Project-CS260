@@ -22,27 +22,27 @@ if (isset($_POST['submit'])) {
 
 	//Check credentials with password and proceed 
     if($mincpi!=NULL){
-        $query="update  companydetails set mincpi=$mincpi where compname='$empid'";
+        $query="update  companyregister set mincpi=$mincpi where compname='$empid'";
         $result=mysqli_query($conn,$query);
     }
     if($minqual!=NULL){
-        $query="update  companydetails set minqualification='$minqual' where compname='$empid'";
+        $query="update  companyregister set minqualification='$minqual' where compname='$empid'";
         $result=mysqli_query($conn,$query);
     }
     if($salary!=NULL){
-        $query="update  companydetails set salary=$salary where compname='$empid'";
+        $query="update  companyregister set salary=$salary where compname='$empid'";
         $result=mysqli_query($conn,$query);
     }
     if($curryear!=NULL){
-        $query="update  companydetails set curryear=$curryear where compname='$empid'";
+        $query="update  companyregister set curryear=$curryear where compname='$empid'";
         $result=mysqli_query($conn,$query);
     }
     if($type!=NULL){
-        $query="update  companydetails set type='$type' where compname='$empid'";
+        $query="update  companyregister set type='$type' where compname='$empid'";
         $result=mysqli_query($conn,$query);
     }
     if($mode!=NULL){
-        $query="update  companydetails set mode='$mode' where compname='$empid'";
+        $query="update  companyregister set mode='$mode' where compname='$empid'";
         $result=mysqli_query($conn,$query);
     }
 

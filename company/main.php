@@ -217,7 +217,7 @@ echo "<hr style='border: 1px dashed black;'>";
 
 // Select all rows from table
 $query2 = "SELECT * from sd,companyregister,apply 
-where '$empid'=companydregister.compname and '$empid'=apply.compname and apply.rollno=sd.rollno and companyregister.mincpi>sd.cpi";
+where '$empid'=companyregister.compname and '$empid'=apply.compname and apply.rollno=sd.rollno and companyregister.mincpi>sd.cpi";
 $result2 = mysqli_query($conn, $query2);
  $mycount2 = mysqli_num_rows($result2);
  

@@ -29,7 +29,6 @@ if (isset($_POST['submit'])) {
 				//$query2="INSERT INTO companydetails (minqualification,mincpi,compname,salary,mode,type,curryear) values (null,null,'$name1',null,null,null,null)";
 				
 			$result = mysqli_query($conn, $query);
-			$result2=mysqli_query($conn,$query2);
 			//If insertion is successful, then redirect to login page else throw error 
 			if ($result) {
 				echo "<script>alert('User registerd!')</script>";

@@ -106,7 +106,7 @@ if(isset($_POST['submit'])) {
     $num_of_companies = filter_var($_POST['num_of_companies'], FILTER_SANITIZE_NUMBER_INT);
 
     // Prepare SQL statement
-    $stmt = $pdo->prepare("SELECT compname, salary FROM companydetails ORDER BY salary DESC LIMIT :num_of_companies");
+    $stmt = $pdo->prepare("SELECT compname, salary FROM companyregister ORDER BY salary DESC LIMIT :num_of_companies");
 
     // Bind parameters
     $stmt->bindParam(':num_of_companies', $num_of_companies, PDO::PARAM_INT);

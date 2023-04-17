@@ -68,7 +68,6 @@ $empid=$_SESSION['sess_user'];
 <div class="card-container">
   <?php
     // Connect to the database
-    $conn = mysqli_connect("localhost", "root", "", "project");
 
     // Fetch data from the sd table
     

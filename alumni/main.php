@@ -124,16 +124,21 @@ div {
 
  $query = "SELECT * from alumnic where rollno = '$empid'";
  $result=mysqli_query($conn,$query);
+
  
  echo "<table>";
    
 echo "<tr><th>Company Name </th><th>Salary </th><th>Joined Year</th><th> Left Year</th><th> Area of Work</th><th> Position</th> <th> Location</th> <th> Update</th>  </tr>";
 while ($row = mysqli_fetch_assoc($result)) {
+  $value = $row['leftyear']; // assuming $row is an array containing the database row
+  if (($value=="0000-00-00")) {
+   $value=" ";
+  } 
   echo "<tr>";
   echo "<td>" . $row['compname'] . "</td>";
   echo "<td>" . $row['salary'] . "</td>";
   echo "<td>" . $row['joinyear'] . "</td>";
-  echo "<td>" . $row['leftyear'] . "</td>";
+  echo "<td>" . $value. "</td>";
   echo "<td>" . $row['areaofwork'] . "</td>";
 
   echo "<td>" . $row['position'] . "</td>";
@@ -164,11 +169,15 @@ echo "<br><br>";
    
 echo "<tr><th>College Name </th><th>Degree </th><th>Joined Year</th><th> Left Year</th><th> Area of Study</th> <th> Location</th><th>Update</th>  </tr>";
 while ($row = mysqli_fetch_assoc($result)) {
+  $value = $row['leftyear']; // assuming $row is an array containing the database row
+  if (($value=="0000-00-00")) {
+   $value=" ";
+  } 
   echo "<tr>";
   echo "<td>" . $row['collegename'] . "</td>";
   echo "<td>" . $row['degree'] . "</td>";
   echo "<td>" . $row['joinyear'] . "</td>";
-  echo "<td>" . $row['leftyear'] . "</td>";
+  echo "<td>" . $value . "</td>";
   echo "<td>" . $row['areaofstudy'] . "</td>";
 
   
@@ -187,11 +196,11 @@ echo "<br><br>";
         <button class="centered-button">Add Education Info</button>
 
 	</form><br>
-  <h2> Info</h2>
+  <h4> Take this small survey for Statistics</h4>
     <br>
     <form method="get" action="updateiitp.php">
 		
-        <button class="centered-button"> Info</button>
+        <button class="centered-button"> Click here</button>
 
 	</form>
   

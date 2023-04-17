@@ -1,8 +1,7 @@
-about and edit student info php
+
 
 Message to student for getting Job and asking him if he is placed already....
 
-Display salary;
 
 
-passoutyear
+

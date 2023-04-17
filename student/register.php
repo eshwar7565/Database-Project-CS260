@@ -7,6 +7,7 @@ if (isset($_POST['submit'])) {
 	$rollno = $_POST['rollno'];$email = $_POST['email'];$c10 = $_POST['c10'];
 	$c12 = $_POST['c12'];$cpi = $_POST['cpi'];$special = $_POST['special'];
 	$aoi = $_POST['aoi'];$dept = $_POST['dept'];$age = $_POST['age'];
+	$name = $_POST['name'];$passyear = $_POST['passyear'];
 
 
 // 	$filename = $_FILES['resume']['name'];
@@ -30,8 +31,8 @@ if (isset($_POST['submit'])) {
 			echo "<script>alert('User already registered. Please login.')</script>";
 		} else {
 			//Insert new employee entry into database 
-			$query = "INSERT INTO sd ( rollno,webmail,c10,c12,cpi,special,aoi,branch,age,pass,compname,salary,mime) 
-				VALUES ('$rollno','$email',$c10,$c12,$cpi,'$special','$aoi','$dept','$age','$pwd1','',0,'-')";
+			$query = "INSERT INTO sd ( rollno,webmail,c10,c12,cpi,special,aoi,branch,age,pass,compname,salary,mime,name,passoutyear) 
+				VALUES ('$rollno','$email',$c10,$c12,$cpi,'$special','$aoi','$dept','$age','$pwd1','',0,'-','$name','$passyear')";
 
 			$result = mysqli_query($conn, $query);
 			//If insertion is successful, then redirect to login page else throw error 
@@ -99,7 +100,10 @@ if (isset($_POST['submit'])) {
 
 							</div>
 						</div>
-
+                        <div class="form-group">
+							<label for="name" class="form-label">Name</label>
+							<input type="text" class="form-control" id="name" name="name" placeholder="Name" required />
+						</div>
 						<div class="form-group">
 							<label for="rollno" class="form-label">Roll No</label>
 							<input type="text" class="form-control" id="rollno" name="rollno" placeholder="Roll No" required />
@@ -155,6 +159,10 @@ if (isset($_POST['submit'])) {
 
 							< required />
 							 </select>
+						</div>
+						<div class="form-group">
+							<label for="rollno" class="form-label">Passed Out Year</label>
+							<input type="text" class="form-control" id="passyear" name="passyear" placeholder="Passed Out Year" required />
 						</div>
 						<div class="form-group">
 							<label for="age" class="form-label">Age</label>

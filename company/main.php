@@ -25,6 +25,7 @@ $salary=$row["salary"];
 $mode=$row["mode"];
 $type=$row["type"];
 $cyear=$row["curryear"];
+$role=$row["role"];
 
 
 ?>
@@ -149,6 +150,10 @@ div {
         <tr>
             <td>Type  </td>
 			<td><?php echo $type; ?></td>
+		</tr>
+		<tr>
+            <td>Role  </td>
+			<td><?php echo $role; ?></td>
 		</tr>
         <tr>
             <td>Current Year  </td>

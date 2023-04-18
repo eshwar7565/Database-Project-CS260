@@ -16,6 +16,9 @@
 	  <li class="nav-item">
         <a class="nav-link" href="ase.php">Recruit</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="filter.php">For Filter Applied Candidates</a>
+      </li>
     
 	 
       

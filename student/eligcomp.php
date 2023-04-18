@@ -27,6 +27,9 @@ require 'config.php';
 	  <li class="nav-item">
         <a class="nav-link" href="eligcomp.php">Apply For Job</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="jobq1.php">Search For Job</a>
+      </li>
       
       
     </ul>

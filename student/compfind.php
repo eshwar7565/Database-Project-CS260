@@ -79,7 +79,7 @@
 		<?php
 			// create buttons for job roles
 			foreach ($roles as $role) {
-				echo "<button id='role-button-" . $role['role'] . "' onclick='roleSelected("" . $role['role'] . "")' class='role-button'>" . $role['role'] . "</button>";
+				echo "<button id='role-button-" . $role['role'] . "' onclick='roleSelected(\"" . $role['role'] . "\")' class='role-button'>" . $role['role'] . "</button>";
             }
         ?>
         	<!-- input for minimum salary and submit button -->

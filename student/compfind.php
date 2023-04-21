@@ -59,7 +59,7 @@
 			$min_salary = $_POST['min_salary'];
 			// query database for companies with selected role and salary greater than or equal to minimum salary
 			$query = "SELECT compname FROM companyregister WHERE role='$role' AND salary>=$min_salary";
-			$result = mysqli_query($db, $query);
+			$result = mysqli_query($conn, $query);
 			$companies = mysqli_fetch_all($result, MYSQLI_ASSOC);
 			// display results in chat
 			echo "<script>document.getElementById('chat-log').innerHTML += 'Companies with role ' + selected_role + ' and salary greater than or equal to ' + $min_salary + ':<br>';</script>";
@@ -79,7 +79,7 @@
 		<?php
 			// create buttons for job roles
 			foreach ($roles as $role) {
-				echo "<button id='role-button-" . $role['role'] . "' onclick='roleSelected("" . $role['role'] . "")' class='role-button'>" . $role['role'] . "</button>";
+				echo "<button id='role-button-" . $role['role'] . "' onclick='roleSelected(\"" . $role['role'] . "\")' class='role-button'>" . $role['role'] . "</button>";
             }
         ?>
         	<!-- input for minimum salary and submit button -->

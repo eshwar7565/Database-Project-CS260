@@ -1,132 +1,168 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Company Finder</title>
-	<style type="text/css">
+	<title>Job Finder</title>
+	<style>
 		body {
-			background-color: #FFA500;
+			background-color: #ffa500;
+			text-align: center;
+			font-family: "Architects Daughter", cursive;
+			font-size: 20px;
+			line-height: 1.5;
 		}
-		button {
-			background-color: #FFF;
-			font-size: 12px;
-			width: 100px;
-			height: 50px;
-			margin-top: 10px;
+		h1 {
+			margin-top: 50px;
 		}
-		input {
-			font-size: 12px;
-			width: 100px;
-			margin-top: 10px;
+		.role-button {
+			background-color: #fff;
+			border: none;
+			color: black;
+			font-size: 20px;
+			font-weight: bold;
+			padding: 20px 40px;
+			margin: 10px;
+			cursor: pointer;
+			border-radius: 10px;
 		}
-		.chat-container {
-			height: 400px;
+		.role-button:hover {
+			background-color: #f2f2f2;
+		}
+		.question {
+			margin-top: 50px;
+		}
+		.chat-log {
 			width: 600px;
+			height: 400px;
+			font-size: 16px;
+			font-family: monospace;
+			resize: none;
+			border: none;
+			background-color: #fff;
+			margin: auto;
+			display: block;
+			overflow-y: scroll;
 			padding: 10px;
-			margin-top: 10px;
-			background-color: #FFF;
-			overflow-y: auto;
+			border-radius: 10px;
+			margin-top: 50px;
+			margin-bottom: 50px;
 		}
-		.chat-left {
-			text-align: left;
+		.chat-input {
+			width: 400px;
+			height: 50px;
+			font-size: 16px;
+			font-family: monospace;
+			resize: none;
+			border: none;
+			background-color: #fff;
+			margin: auto;
+			display: block;
+			border-radius: 10px;
+			padding: 10px;
 		}
-		.chat-right {
-			text-align: right;
+		.submit-button {
+			background-color: #fff;
+			border: none;
+			color: black;
+			font-size: 20px;
+			font-weight: bold;
+			padding: 20px 40px;
+			margin-top: 20px;
+			cursor: pointer;
+			border-radius: 10px;
+		}
+		.submit-button:hover {
+			background-color: #f2f2f2;
 		}
 	</style>
+	<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
 </head>
 <body>
+	<h1>Job Finder</h1>
+	<div id="role-question" class="question">What kind of role are you looking for?</div>
 	<?php
 		// establish database connection
-		include 'config.php';
+		$host = "localhost";
+		$user = "your_db_username";
+		$pass = "your_db_password";
+		$dbname = "your_db_name";
+		$conn = mysqli_connect($host, $user, $pass, $dbname);
+		if (mysqli_connect_errno()) {
+			die("Failed to connect to database: " . mysqli_connect_error());
+		}
 
-		// get distinct job roles from company_register table
-		$query = "SELECT DISTINCT role FROM companyregister";
-		$result = mysqli_query($conn, $query);
-		$roles = mysqli_fetch_all($result, MYSQLI_ASSOC);
+		// query distinct roles from companyregister table
+		$sql = "SELECT DISTINCT role FROM companyregister";
+		$result = mysqli_query($conn, $sql);
+		if (mysqli_num_rows($result) > 0) {
+			// display role buttons
+			echo "<div id='role-buttons'>";
+			while ($row = mysqli_fetch_assoc($result)) {
+				echo "<button class='role-button' onclick='roleSelected(\"" . $row["role"] . "\")'>" . $row["role"] . "</button>";
+			}
+			echo "</div>";
+		}
+		?>
+		<div id="role-question" class="question">
+		<p>What kind of role are you looking for?</p>
+		</div>
+		<div id="salary-question" class="question" style="display:none;">
+		<p>What is the minimum salary you are expecting?</p>
+		<input id="min-salary-input" type="number" placeholder="Enter minimum salary">
+		<input id="selected-role" type="hidden" value="">
+		<button class="submit-button" onclick="submit()">Submit</button>
+	</div>
 
-		// define functions for button click and chat display
-		function role_selected($role) {
-			// ask user for minimum salary
-			echo "<script>document.getElementById('min-salary-button').style.display = 'none';</script>";
-			echo "<input type='text' id='min-salary-entry' placeholder='Minimum Salary'>";
-			echo "<button onclick='submit()'>Submit</button>";
+	<div id="role-selected"></div>
+
+	<div id="chat-log"></div>
+
+	<div id="chat-input" style="display:none;">
+		<input id="chat-message" type="text" placeholder="Type your message here">
+		<button id="send-button" onclick="sendMessage()">Send</button>
+	</div>
+
+	<script>
+		function roleSelected(role) {
+			// hide role buttons and display minimum salary question
+			document.getElementById("role-question").style.display = "none";
+			document.getElementById("role-selected").innerHTML = "Selected Role: " + role;
+			document.getElementById("salary-question").style.display = "block";
+			document.getElementById("min-salary-input").focus();
 			// store selected role for use in submit function
-			echo "<script>var selected_role = '$role';</script>";
+			document.getElementById("selected-role").value = role;
 		}
 
 		function submit() {
 			// get minimum salary from user input
-			$min_salary = $_POST['min_salary'];
+			var minSalary = document.getElementById("min-salary-input").value;
 			// query database for companies with selected role and salary greater than or equal to minimum salary
-			$query = "SELECT compname FROM companyregister WHERE role='$role' AND salary>=$min_salary";
-			$result = mysqli_query($db, $query);
-			$companies = mysqli_fetch_all($result, MYSQLI_ASSOC);
-			// display results in chat
-			echo "<script>document.getElementById('chat-log').innerHTML += 'Companies with role ' + selected_role + ' and salary greater than or equal to ' + $min_salary + ':<br>';</script>";
-			foreach ($companies as $company) {
-				echo "<script>document.getElementById('chat-log').innerHTML += '&#9658; ' + '" . $company['compname'] . "' + '<br>';</script>";
-			}
-			// reset UI for new query
-			echo "<script>document.getElementById('min-salary-entry').value = '';</script>";
-			echo "<script>document.getElementById('min-salary-entry').style.display = 'none';</script>";
-			echo "<script>document.getElementById('submit-button').style.display = 'none';</script>";
-			foreach ($roles as $role) {
-				echo "<script>document.getElementById('role-button-" . $role['role'] . "').style.display = 'block';</script>";
-			}
-		}
-	?>
-	<div class="container">
-		<?php
-			// create buttons for job roles
-			foreach ($roles as $role) {
-				echo "<button id='role-button-" . $role['role'] . "' onclick='roleSelected(\"" . $role['role'] . "\")' class='role-button'>" . $role['role'] . "</button>";
-            }
-        ?>
-        	<!-- input for minimum salary and submit button -->
-	<div id="min-salary-input" style="display: none;">
-		<label for="min-salary">What is the minimum salary you are expecting?</label>
-		<input type="number" id="min-salary" name="min-salary" required>
-		<button type="submit" onclick="submitForm()">Submit</button>
-	</div>
-
-	<!-- chat display -->
-	<div id="chat-log"></div>
-
-	<script>
-		let selectedRole = '';
-
-		function roleSelected(role) {
-			selectedRole = role;
-			document.getElementById('min-salary-input').style.display = 'block';
-			document.querySelectorAll('.role-button').forEach(button => {
-				button.style.display = 'none';
-			});
-		}
-
-		function submitForm() {
-			const minSalary = document.getElementById('min-salary').value;
-			const xmlhttp = new XMLHttpRequest();
-			xmlhttp.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
-					const companies = JSON.parse(this.responseText);
-					const chatLog = document.getElementById('chat-log');
-					chatLog.innerHTML += `<p>Companies with role '${selectedRole}' and salary greater than or equal to ${minSalary}:</p>`;
-					companies.forEach(company => {
-						chatLog.innerHTML += `<p class='chat-bubble-right'>${company}</p>`;
-					});
-					document.getElementById('min-salary-input').style.display = 'none';
-					document.querySelectorAll('.role-button').forEach(button => {
-						button.style.display = 'block';
-					});
-					document.getElementById('min-salary').value = '';
-					selectedRole = '';
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === 4 && xhr.status === 200) {
+					// display results in chat
+					document.getElementById("chat-log").innerHTML += "Companies with role '" + document.getElementById("selected-role").value + "' and salary greater than or equal to " + minSalary + ":\n";
+					document.getElementById("chat-log").innerHTML += xhr.responseText;
+					document.getElementById("chat-input").style.display = "block";
 				}
-			};
-			xmlhttp.open("GET", `query.php?role=${selectedRole}&min_salary=${minSalary}`, true);
-			xmlhttp.send();
+			}
+			xhr.open("GET", "compfind.php?role=" + document.getElementById("selected-role").value + "&min_salary=" + minSalary, true);
+			xhr.send();
+			// reset UI for new search
+			document.getElementById("salary-question").style.display = "none";
+			document.getElementById("role-selected").innerHTML = "";
+			document.getElementById("min-salary-input").value = "";
+			document.getElementById("selected-role").value = "";
+			document.getElementById("role-question").style.display = "block";
+		}
+
+		function sendMessage() {
+			// get user input message
+			var message = document.getElementById("chat-message").value;
+			// send message via WhatsApp API
+			window.open("https://api.whatsapp.com/send?text=" + message);
+			// clear input field
+			document.getElementById("chat-message").value = "";
 		}
 	</script>
-</div>
-
 </body>
-</html> 
+</html>

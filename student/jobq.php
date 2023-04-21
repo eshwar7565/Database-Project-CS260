@@ -34,8 +34,6 @@
 	<div class="container">
 		<h1>Job Search</h1>
 		<form method="POST" action="">
-			<div class="question">What job role are you interested in?</div>
-			<div class="answer"><input type="text" name="role"></div>
 			<div class="question">What is your minimum expected salary?</div>
 			<div class="answer"><input type="text" name="salary"></div>
 			<div style="text-align: center;">
@@ -45,14 +43,13 @@
 		<?php
         include 'config.php';
 			if (isset($_POST['submit'])) {
-				$role = $_POST['role'];
 				$salary = $_POST['salary'];
 				if ($conn->connect_error) {
 					die("Connection failed: " . $conn->connect_error);
 				}
 
 				// Prepare SQL statement with NLP search
-				$sql = "SELECT * FROM companydetails WHERE MATCH(role) AGAINST('$role' IN NATURAL LANGUAGE MODE)";
+				$sql = "SELECT * FROM companydetails WHERE salary='$salary'";
 
 				$result = $conn->query($sql);
 

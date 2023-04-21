@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
 
- <title>Student Details</title>
+ <title>Alumni Details</title>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,12 +12,7 @@
       <li class="nav-item">
         <a class="nav-link" href="main.php">Home</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="about.php">About</a>
-      </li>
-	  <li class="nav-item">
-        <a class="nav-link" href="eligcomp.php">Apply For Job</a>
-      </li>
+     
       
       
     </ul>
@@ -44,20 +39,22 @@ $conn = mysqli_connect("localhost", "root", "", "project");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   // Get the values from the form
-  $webmail = $_POST['webmail'];
-  $name = $_POST['name'];
-  $c10 = $_POST['c10'];
-  $c12 = $_POST['c12'];
-  $cpi = $_POST['cpi'];
-  $special = $_POST['special'];
-  $age = $_POST['age'];
-  $aoi = $_POST['aoi'];
-  $branch = $_POST['branch'];
-  $passoutyear = $_POST['passoutyear'];
+
+  $compname = $_POST['compname'];
  
+  $salary = $_POST['salary'];
+    $startdate=$_POST['joinyear'];
+    $enddate=$_POST['leftyear'];
+    $aow=$_POST['aow'];
+    $position=$_POST['position']; 
+    $location=$_POST['location'];
+    $value = $enddate;// assuming $row is an array containing the database row
+    if (($value=="0000-00-00")) {
+     $value=" ";
+    } 
 
   // Update the values in the sd table
-  $query = "UPDATE sd SET name='$name',passoutyear='$passoutyear', webmail='$webmail', c10='$c10', c12='$c12', cpi='$cpi', special='$special', age='$age', aoi='$aoi', branch='$branch' WHERE rollno='$empid'";
+  $query = "UPDATE alumnic SET compname='$compname',salary='$salary', joinyear='$startdate', leftyear='$enddate', areaofwork='$aow',  position='$position', location='$location' WHERE rollno='$empid'";
   $result = mysqli_query($conn, $query);
 
   if ($result) {
@@ -70,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 // Fetch the data for the rollno passed in the URL parameter
 $id = $_GET['id'];
-$query = "SELECT * FROM sd WHERE rollno='$id'";
+$query = "SELECT * FROM alumnic WHERE rollno='$id'";
 $result = mysqli_query($conn, $query);
 $row = mysqli_fetch_assoc($result);
 
@@ -80,65 +77,54 @@ mysqli_close($conn);
 <!-- HTML code for update form -->
 <form method="POST">
 <div class="form-group row">
-    <label for="name" class="col-sm-2 col-form-label">Name:</label>
+    <label for="compname" class="col-sm-2 col-form-label">Company Name:</label>
     <div class="col-sm-10">
-      <input type="text" id="name" name="name" class="form-control" value="<?php echo $row['name']; ?>">
+      <input type="text" id="compname" name="compname" class="form-control" value="<?php echo $row['compname']; ?>">
+    </div>
+  </div>
+  
+  <div class="form-group row">
+    <label for="salary" class="col-sm-2 col-form-label">Salary :</label>
+    <div class="col-sm-10">
+      <input type="text" id="salary" name="salary" class="form-control" value="<?php echo $row['salary']; ?>">
     </div>
   </div>
   <div class="form-group row">
-    <label for="webmail" class="col-sm-2 col-form-label">Webmail:</label>
+    <label for="startdate" class="col-sm-2 col-form-label">Start Date:</label>
     <div class="col-sm-10">
-      <input type="text" id="webmail" name="webmail" class="form-control" value="<?php echo $row['webmail']; ?>">
+      <input type="text" id="c12" name="joinyear" class="form-control" value="<?php echo $row['joinyear']; ?>">
     </div>
   </div>
   <div class="form-group row">
-    <label for="c10" class="col-sm-2 col-form-label">Class 10:</label>
+    <label for="enddate" class="col-sm-2 col-form-label">Left Year:</label>
     <div class="col-sm-10">
-      <input type="text" id="c10" name="c10" class="form-control" value="<?php echo $row['c10']; ?>">
+      <input type="text" id="enddate" name="leftyear" class="form-control" value="<?php $enddate=$row['leftyear'];
+       $value = $enddate;// assuming $row is an array containing the database row
+    if (($value=="0000-00-00")) {
+     $value=" ";
+    } 
+    echo $value; ?>">
     </div>
   </div>
   <div class="form-group row">
-    <label for="c12" class="col-sm-2 col-form-label">Class 12:</label>
+    <label for="aow" class="col-sm-2 col-form-label">AreaofWork:</label>
     <div class="col-sm-10">
-      <input type="text" id="c12" name="c12" class="form-control" value="<?php echo $row['c12']; ?>">
+      <input type="text" id="aow" name="aow" class="form-control" value="<?php echo $row['areaofwork']; ?>">
     </div>
   </div>
   <div class="form-group row">
-    <label for="cpi" class="col-sm-2 col-form-label">CPI:</label>
+    <label for="position" class="col-sm-2 col-form-label">Position:</label>
     <div class="col-sm-10">
-      <input type="text" id="cpi" name="cpi" class="form-control" value="<?php echo $row['cpi']; ?>">
+      <input type="text" id="position" name="position" class="form-control" value="<?php echo $row['position']; ?>">
     </div>
   </div>
   <div class="form-group row">
-    <label for="special" class="col-sm-2 col-form-label">Special:</label>
+    <label for="location" class="col-sm-2 col-form-label">Location:</label>
     <div class="col-sm-10">
-      <input type="text" id="special" name="special" class="form-control" value="<?php echo $row['special']; ?>">
+      <input type="text" id="location" name="location" class="form-control" value="<?php echo $row['location']; ?>">
     </div>
   </div>
-  <div class="form-group row">
-    <label for="age" class="col-sm-2 col-form-label">Age:</label>
-    <div class="col-sm-10">
-      <input type="text" id="age" name="age" class="form-control" value="<?php echo $row['age']; ?>">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="aoi" class="col-sm-2 col-form-label">Area Of Interest:</label>
-    <div class="col-sm-10">
-      <input type="text" id="aoi" name="aoi" class="form-control" value="<?php echo $row['aoi']; ?>">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="branch" class="col-sm-2 col-form-label">Branch:</label>
-    <div class="col-sm-10">
-      <input type="text" id="branch" name="branch" class="form-control" value="<?php echo $row['branch']; ?>">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="passoutyear" class="col-sm-2 col-form-label">PassOutYear:</label>
-    <div class="col-sm-10">
-      <input type="text" id="passoutyear" name="passoutyear" class="form-control" value="<?php echo $row['passoutyear']; ?>">
-    </div>
-  </div>
+  
  
   <div class="form-submit">
   <input type="submit" id="button" name="submit" value="Update">

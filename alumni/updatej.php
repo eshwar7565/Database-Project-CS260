@@ -95,7 +95,7 @@ if (isset($_POST['submit'])) {
                         <p>&ensp; Please enter in this format &ensp; 'YYYY-MM-DD'</p>
 						<div class="form-group">
 							<label for="enddate" class="form-label">End Date</label>
-							<input type="text" class="form-control" id="endyear" name="endyear" placeholder="End Date YYYY-MM-DD" required />
+							<input type="text" class="form-control" id="endyear" name="endyear" placeholder="End Date YYYY-MM-DD"  />
 						</div>
 						<div class="form-group">
 							<label for="Areaofwork" class="form-label">Field</label>

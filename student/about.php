@@ -70,13 +70,14 @@ $empid=$_SESSION['sess_user'];
     // Connect to the database
 
     // Fetch data from the sd table
-    echo $empid;
+    
     $query = "SELECT * FROM sd where rollno='$empid'";
     $result = mysqli_query($conn, $query);
 
     // Loop through the results and display them in cards
     while ($row = mysqli_fetch_assoc($result)) {
       echo '<div class="card">';
+      echo '<p> <strong>Name   &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp: &nbsp </strong>'. $row['name'] . '</p>';
       echo '<p> <strong>Roll No   &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp: &nbsp </strong>'. $row['rollno'] . '</p>';
       echo '<p><strong>Email   &nbsp&nbsp&nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp: &nbsp</strong> ' . $row['webmail'] . '</p>';
       echo '<p><strong>Class 10   &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp: &nbsp</strong> ' . $row['c10'] . '</p>';
@@ -86,6 +87,7 @@ $empid=$_SESSION['sess_user'];
       echo '<p><strong>Age &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp  &nbsp &nbsp&nbsp:&nbsp</strong> ' . $row['age'] . '</p>';
       echo '<p><strong>AreaofInterest: &nbsp</strong> ' . $row['aoi'] . '</p>';
       echo '<p><strong>Branch &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp: &nbsp</strong> ' . $row['branch'] . '</p>';
+      echo '<p> <strong>Pass Out Year   : &nbsp </strong>'. $row['passoutyear'] . '</p>';
       echo '<p><strong>Salary  &nbsp &nbsp&nbsp&nbsp &nbsp &nbsp &nbsp  : &nbsp </strong> ' . $row['salary'] . '</p>';
       echo '<div class="card-buttons">';
       echo '<a href="update.php?id=' . $row['rollno'] . '">Update</a>';

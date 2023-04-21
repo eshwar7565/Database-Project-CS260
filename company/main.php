@@ -25,6 +25,7 @@ $salary=$row["salary"];
 $mode=$row["mode"];
 $type=$row["type"];
 $cyear=$row["curryear"];
+$role=$row["role"];
 
 
 ?>
@@ -43,6 +44,9 @@ $cyear=$row["curryear"];
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" href="main.php">Home</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link" href="ase.php">Recruit</a>
       </li>
     
 	 
@@ -147,6 +151,10 @@ div {
             <td>Type  </td>
 			<td><?php echo $type; ?></td>
 		</tr>
+		<tr>
+            <td>Role  </td>
+			<td><?php echo $role; ?></td>
+		</tr>
         <tr>
             <td>Current Year  </td>
 			<td><?php echo $cyear; ?></td>
@@ -165,9 +173,7 @@ div {
         <button class="centered-button">Update</button>
 
 	</form>
-<?php
-  echo "<hr style='border: 1px dashed black;'>";
-?>
+
 
 </html>
 	
@@ -179,104 +185,12 @@ div {
  </style>
 </html>
 <?php
-
-//Find various fields for an  and save them in variables for display purposes 
-
-// Select all rows from table
-$query = "SELECT * from sd,companyregister,apply 
-where '$empid'=companyregister.compname and '$empid'=apply.compname and apply.rollno=sd.rollno and companyregister.mincpi<=sd.cpi";
-$result = mysqli_query($conn, $query);
- $mycount = mysqli_num_rows($result);
-
-
-// Generate HTML table to display data
-echo "<br><br>";
-echo "<table>";
-echo "<h5>List of applied candidates who are eligible</h5>" ;
-echo "<br><br>";
-
-echo "No of candidates = ";
-echo $mycount;
-echo "<br><br>";
-echo "<tr><th>ID</th><th>Name</th><th>Webmail</th><th>Action1</th><th>Action2</th><th>Resume</th></tr>";
-while ($row = mysqli_fetch_assoc($result)) {
-  echo "<tr>";
-  echo "<td>" . $row['rollno'] . "</td>";
-  echo "<td>" . $row['cpi'] . "</td>";
-  echo "<td>" . $row['webmail'] . "</td>";
-  echo "<td><a href='accept.php?id=" . $row["rollno"] . "'>Accept</a></td>";
-  echo "<td><a href='reject.php?id=" . $row["rollno"] . "'>Reject</a></td>";
-  echo "<td><a href='blobdemo.php?id=" . $row["rollno"] . "'>View</a></td>";
-  echo "</tr>";
-}
-echo "</table>";
-
-echo "<hr style='border: 1px dashed black;'>";
-
-
-
-// Select all rows from table
-$query2 = "SELECT * from sd,companyregister,apply 
-where '$empid'=companyregister.compname and '$empid'=apply.compname and apply.rollno=sd.rollno and companyregister.mincpi>sd.cpi";
-$result2 = mysqli_query($conn, $query2);
- $mycount2 = mysqli_num_rows($result2);
- 
-
-// Generate HTML table to display data
-echo "<br><br>";
-echo "<table>";
-echo "<h5>List of applied candidates who are not eligible</h5>" ;
-echo "<br><br>";
-
-echo "No of candidates = ";
-echo $mycount2;
-echo "<br><br>";
-echo "<tr><th>ID</th><th>Name</th><th>Webmail</th><th>Action1</th><th>Action2</th><th>Resume</th></tr>";
-while ($row = mysqli_fetch_assoc($result2)) {
-  echo "<tr>";
-  echo "<td>" . $row['rollno'] . "</td>";
-  echo "<td>" . $row['cpi'] . "</td>";
-  echo "<td>" . $row['webmail'] . "</td>";
-  echo "<td><a href='accept.php?id=" . $row["rollno"] . "'>Accept</a></td>";
-  echo "<td><a href='reject.php?id=" . $row["rollno"] . "'>Reject</a></td>";
-  echo "<td><a href='blobdemo.php?id=" . $row["rollno"] . "'>View</a></td>";
-  echo "</tr>";
-}
-echo "</table>";
-
-
-// Query database
-$query = mysqli_query($conn, "SELECT rollno, webmail , cpi FROM sd where compname='$empid'");
-$mycount = mysqli_num_rows($query);
-// Fetch data
-
-// Close database connection
-echo "<hr style='border: 1px dashed black;'>";
-echo "<br><br>";
-echo "<table>";
-echo "<h4>List of Recruited candidates</h4>" ;
-echo "<br><br>";
-
-echo "<h7>No of recruited candidates = $mycount </h7> ";
-
-echo "<tr><th>RollNo</th><th>CPI</th><th>Webmail</th></tr>";
-while ($row = mysqli_fetch_assoc($query)) {
-  echo "<tr>";
-  echo "<td>" . $row['rollno'] . "</td>";
-  echo "<td>" . $row['cpi'] . "</td>";
-  echo "<td>" . $row['webmail'] . "</td>";
-  echo "</tr>";
-}
-echo "</table>";
-
-?>
-<?php
 echo "<hr style='border: 1px dashed black;'>";
 ?>
 <?php
 echo "<br><br>";
 echo "<table>";
-echo "<h4>List of Appearing Years in IITP</h4>" ;
+echo "<h4>List of Years Appearing in IITP</h4>" ;
 ?>
 <!DOCTYPE html>
 <html>

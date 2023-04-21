@@ -19,6 +19,7 @@ if (isset($_POST['submit'])) {
 	$minqual=$_POST['minqual'];
     $salary=$_POST['salary'];
     $curryear=$_POST['year'];
+	$role=$_POST['role'];
 
 	//Check credentials with password and proceed 
     if($mincpi!=NULL){
@@ -43,6 +44,10 @@ if (isset($_POST['submit'])) {
     }
     if($mode!=NULL){
         $query="update  companyregister set mode='$mode' where compname='$empid'";
+        $result=mysqli_query($conn,$query);
+    }
+	if($role!=NULL){
+        $query="update  companyregister set role='$role' where compname='$empid'";
         $result=mysqli_query($conn,$query);
     }
 
@@ -116,6 +121,12 @@ if (isset($_POST['submit'])) {
 							<label class="col-sm-3 col-form-label" for="year">Current Year</label>
 							<div class="col-sm-4">
 								<input type="text" class="form-control"  id="year" name="year" />
+							</div>
+						</div><br/>
+						<div class="row mb-3">
+							<label class="col-sm-3 col-form-label" for="role">Role</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control"  id="role" name="role" />
 							</div>
 						</div>
 						<br />

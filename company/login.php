@@ -5,7 +5,7 @@ if (isset($_POST['submit'])) {
 	$pwd = $_POST['pass'];
 	
 	// select query to check if profile exists 
-	$query = "SELECT * FROM companyregister WHERE compname='$empid' and pass='$pwd'";
+	$query = "SELECT * FROM companyregister WHERE compname='$empid' and pass='$pwd' and isverified='YES'";
 	$result = mysqli_query($conn, $query);
 	
 	//If there exists a row with the given credentials, then redirect to respective profile page otherwise stay on same page by alert 
@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
 		$_SESSION['sess_user'] = $empid;
 		header("Location: main.php");
 	} else {
-		echo "<script>alert('Invalid email or password.')</script>";
+		echo "<script>alert('Invalid email or password or user not yet verified.')</script>";
 	}
 }
 ?>

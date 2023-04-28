@@ -38,6 +38,7 @@ if (isset($_POST['submit'])) {
 			//If insertion is successful, then redirect to login page else throw error 
 			if ($result) {
 				echo "<script>alert('User registerd!')</script>";
+				
 				header("Location: login.php");
 			} else {
 				echo "<script>alert('Something went wrong!')</script>";

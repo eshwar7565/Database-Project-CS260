@@ -20,6 +20,23 @@ h2 {font-family: Georgia,Verdana, Arial, Helvetica, sans-serif, "MS sans serif";
 </HEAD>
 <BODY>
 
+<button class="admin-button"><a href="admin/index.php">Admin</a></button>
+
+<style>
+.admin-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+</style>
+
 
 <table height = "100%" width="100%" cellspacing="0" cellpadding="0">
 <tr height = "15%"><td>
@@ -28,29 +45,29 @@ h2 {font-family: Georgia,Verdana, Arial, Helvetica, sans-serif, "MS sans serif";
 <tr> <td align="center"><h2><font color = DarkBlue></h2></td> </tr>
  </td> </tr>
 </table>
+
 </td></tr>
 <tr height = "50%"><td>
+
 <table  width="100%" align="center" cellspacing="0" cellpadding="0"  border="0">
 	<tr> <td align="center"> <img src="pics/iitpatna_admin.jpg" > </td> </tr>
 </table>
+
 </td></tr>
 <tr height = "30%"><td>
 <table  align = "center" border=0 cellspacing=0 cellpadding=4>
 <tr><td width=30>&nbsp;</td>
 <td bgcolor=blue align=center width=100><a href="student/login.php" alt ="Id" title = "For Student">Student </a></td>
-<td width=30>&nbsp;</td>
-<td width=30>&nbsp;</td>
+<td width=25>&nbsp;</td>
+<td width=25>&nbsp;</td>
 <td bgcolor=red align=center width=100 ><a href="alumni/login.php" alt ="Id" title = "For Administration">Alumni</a></td>
-<td width=30>&nbsp;</td>
-<td width=30>&nbsp;</td>
+<td width=25>&nbsp;</td>
+<td width=25>&nbsp;</td>
 <td bgcolor=indigo align=center width=100 ><a href="company/login.php" alt ="Id" title = "For Faculty">Company</a></td>
-<td width=30>&nbsp;</td>
-
-<td width=30>&nbsp;</td>
+<td width=25>&nbsp;</td>
+<td width=25>&nbsp;</td>
 <td bgcolor=#40E0D0 align=center width=100 ><a href="statistics/main.php" alt ="Id" title = "For Faculty">Statistics</a></td>
-<td width=30>&nbsp;</td>
-
-<td width=30>&nbsp;</td>
+<td width=25>&nbsp;</td>
 
 </tr>
 
